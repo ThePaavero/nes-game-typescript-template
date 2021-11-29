@@ -3,10 +3,6 @@ export interface Canvas {
   height: number
 }
 
-export interface Things {
-  things: Thing[]
-}
-
 export interface Coordinates {
   x: number
   y: number
@@ -17,9 +13,13 @@ export interface Image {
   data: Blob
 }
 
+export interface Images {
+  images: Image[]
+}
+
 export interface ThingTraits {
   moves: boolean
-  isHittable: boolean
+  doHitChecks: boolean
   isControllable: boolean
 }
 
@@ -34,18 +34,18 @@ export interface Momentum {
 }
 
 export interface Thing {
-  id: string
-  image?: Image
-  width: number
-  height: number
-  position: Coordinates
-  traits: ThingTraits
-  momentum: Momentum
-  mass?: number
+  id: string | undefined
+  image?: Image | undefined
+  width: number | undefined
+  height: number | undefined
+  position: Coordinates | undefined
+  traits: ThingTraits | undefined
+  momentum: Momentum | undefined
+  mass?: number | undefined
 }
 
 export interface GameState {
-  things: Things
+  things: Thing[]
   paused: boolean
   keysDown: string[]
 }

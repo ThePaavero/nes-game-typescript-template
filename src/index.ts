@@ -1,11 +1,15 @@
-import { Canvas, Coordinates, Thing, Image } from './GameTypes'
+import * as types from './GameTypes'
 import Config from './../GameConfig'
+import Player from './modules/Player'
 import './scss/main.scss'
 
-console.log('Ready to go!')
+const things: types.Thing[] = []
+const player: types.Thing = Player
+const state: types.GameState = {
+  things,
+  paused: false,
+  keysDown: [],
+}
 
-console.log(Config)
-
-document.addEventListener('keydown', (e) => {
-  console.log('KEYDOWN:', e.key)
-})
+console.log('state:', state)
+console.log('player:', player)
