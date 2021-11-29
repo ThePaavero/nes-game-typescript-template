@@ -1,0 +1,37 @@
+{
+  "name": "typescript-template",
+  "version": "1.0.0",
+  "description": "TS Template",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run serve",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode=production --node-env=production",
+    "build:dev": "webpack --mode=development",
+    "build:prod": "webpack --mode=production --node-env=production",
+    "watch": "webpack --watch",
+    "serve": "webpack serve"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^16.11.10",
+    "@types/webpack": "^5.28.0",
+    "@webpack-cli/generators": "^2.4.1",
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^10.0.0",
+    "declaration-bundler-webpack-plugin": "^1.0.3",
+    "html-webpack-plugin": "^5.5.0",
+    "prettier": "^2.4.1",
+    "sass": "^1.43.5",
+    "sass-loader": "^12.3.0",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.5.2",
+    "webpack": "^5.64.4",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.6.0",
+    "css-loader": "^6.5.1",
+    "style-loader": "^3.3.1"
+  },
+  "dependencies": {}
+}
