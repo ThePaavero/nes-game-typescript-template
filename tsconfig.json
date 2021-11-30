@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
+    "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "noImplicitAny": true,
+    "resolveJsonModule": true,
     "module": "es6",
     "target": "es5",
     "allowJs": true

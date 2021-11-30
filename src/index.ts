@@ -1,15 +1,26 @@
 import * as types from './GameTypes'
 import Config from './../GameConfig'
+import Runtime from './engine/Runtime'
+import ImagePreloader from './engine/ImagePreloader'
 import Player from './modules/Player'
 import './scss/main.scss'
+import imageNames from './../images.json'
 
-const things: types.Thing[] = []
-const player: types.Thing = Player
-const state: types.GameState = {
-  things,
-  paused: false,
-  keysDown: [],
-}
+// const init = async (): void => {
+//   let images = []
+//   if (imageNames.length) {
+//     images = await ImagePreloader.preload(images)
+//   }
+//   console.log(images)
+//   const things: types.Thing[] = []
+//   const player: types.Thing = Player
+//   const state: types.GameState = {
+//     things,
+//     paused: false,
+//     keysDown: [],
+//   }
 
-console.log('state:', state)
-console.log('player:', player)
+//   Runtime.start()
+// }
+
+// init()

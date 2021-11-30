@@ -10,7 +10,7 @@ export interface Coordinates {
 
 export interface Image {
   id: string
-  data: Blob
+  element: HTMLImageElement
 }
 
 export interface Images {
