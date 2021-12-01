@@ -1,4 +1,4 @@
-import { Image, Images } from '../GameTypes'
+// import { Image, Images } from '../types/GameTypes'
 
 const ImagePreloader = () => {
   const promises = []

@@ -1,4 +1,4 @@
-import * as types from './GameTypes'
+import * as types from './types/GameTypes'
 import Config from './../GameConfig'
 import ImagePreloader from './engine/ImagePreloader'
 import Player from './modules/Player'
