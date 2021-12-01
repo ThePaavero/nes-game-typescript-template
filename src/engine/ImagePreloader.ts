@@ -10,6 +10,7 @@ const ImagePreloader = () => {
         const imgElement = document.createElement('img')
         imgElement.src = `http://localhost:8080/images/${imageName}.png`
         imgElement.onload = () => {
+          console.log(`Successfully loaded image "${imageName}.png"`)
           resolve({
             id: imageName,
             element: imgElement,
@@ -18,14 +19,14 @@ const ImagePreloader = () => {
         imgElement.onerror = reject
       })
     )
-    Promise.all(promises).then((images) => {
-      console.log(images)
-      // resolve(images)
+
+    return new Promise((resolve, reject) => {
+      Promise.all(promises).then(resolve).catch(reject)
     })
   }
 
   const preload = async (images: string[]) => {
-    return await images.map(loadImage)
+    return Promise.all(images.map(loadImage))
   }
 
   return { preload }

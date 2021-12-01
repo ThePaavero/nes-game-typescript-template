@@ -11,8 +11,9 @@ const init = async () => {
   if (imageNames.length) {
     console.log(`Preloading following ${imageNames.length} images:`)
     console.table(imageNames)
-    images = await ImagePreloader.preload(images)
-    console.log(images)
+    images = await ImagePreloader.preload(imageNames)
+    console.log('The following images have been added to memory:')
+    console.table(images)
   }
 
   const things: types.Thing[] = []
