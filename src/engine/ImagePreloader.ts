@@ -8,7 +8,7 @@ const ImagePreloader = () => {
     promises.push(
       new Promise((resolve, reject) => {
         const imgElement = document.createElement('img')
-        imgElement.src = `http://localhost:8080/images/${imageName}.png`
+        imgElement.src = `/images/${imageName}.png`
         imgElement.onload = () => {
           console.log(`Successfully loaded image "${imageName}.png"`)
           resolve({
