@@ -1,19 +1,19 @@
 import * as types from './GameTypes'
 import Config from './../GameConfig'
-import Runtime from './engine/Runtime'
 import ImagePreloader from './engine/ImagePreloader'
 import Player from './modules/Player'
 import './scss/main.scss'
 import imageNames from './../images.json'
+import Game from './game/Game'
 
 const init = async () => {
   let images = []
   if (imageNames.length) {
-    console.log(`Preloading following ${imageNames.length} images:`)
-    console.table(imageNames)
+    console.info(`Preloading following ${imageNames.length} images:`)
+    console.info(imageNames)
     images = await ImagePreloader.preload(imageNames)
-    console.log('The following images have been added to memory:')
-    console.table(images)
+    console.info('The following images have been added to memory:')
+    console.info(images)
   }
 
   const things: types.Thing[] = []
@@ -22,9 +22,17 @@ const init = async () => {
     things,
     paused: false,
     keysDown: [],
+    player,
   }
 
-  Runtime.start()
+  const canvas = document.createElement('canvas')
+  canvas.width = Config.width
+  canvas.height = Config.height
+  document.querySelector('.game').appendChild(canvas)
+
+  const context = canvas.getContext('2d')
+
+  Game(canvas, context, images, state)
 }
 
 init()

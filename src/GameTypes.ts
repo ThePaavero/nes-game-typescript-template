@@ -48,4 +48,5 @@ export interface GameState {
   things: Thing[]
   paused: boolean
   keysDown: string[]
+  player: Thing
 }
