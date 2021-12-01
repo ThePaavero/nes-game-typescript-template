@@ -1,7 +1,8 @@
 import { Canvas, Coordinates, Image, Images, ThingTraits, Forces, Momentum, Thing, GameState } from '../types/GameTypes'
+import { getThingById } from '../engine/utils/ThingHelper'
 
 const Game = (canvas: HTMLCanvasElement, context: CanvasRenderingContext2D, images: Image[], state: GameState) => {
-  const things = state.things
+  const player = getThingById('player')
 
   const updateState = (state: GameState): void => {
     // ...

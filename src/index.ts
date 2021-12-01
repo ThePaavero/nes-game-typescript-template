@@ -5,6 +5,7 @@ import Player from './modules/Player'
 import './scss/main.scss'
 import imageNames from './../images.json'
 import Game from './game/Game'
+import ThingHelper from './engine/utils/ThingHelper'
 
 const init = async () => {
   let images = []
@@ -18,11 +19,11 @@ const init = async () => {
 
   const things: types.Thing[] = []
   const player: types.Thing = Player
+  things.push(player)
   const state: types.GameState = {
     things,
     paused: false,
     keysDown: [],
-    player,
   }
 
   const canvas = document.createElement('canvas')
@@ -31,6 +32,8 @@ const init = async () => {
   document.querySelector('.game').appendChild(canvas)
 
   const context = canvas.getContext('2d')
+
+  ThingHelper.setThings(things)
 
   Game(canvas, context, images, state)
 }

@@ -1,4 +1,5 @@
 export default {
+  name: 'Example Game',
   width: 256,
   height: 240,
   fps: 60,
