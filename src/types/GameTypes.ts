@@ -13,10 +13,6 @@ export interface Image {
   element: HTMLImageElement
 }
 
-export interface Images {
-  images: Image[]
-}
-
 export interface ThingTraits {
   moves: boolean
   doHitChecks: boolean

@@ -1,5 +1,5 @@
-import { Canvas, Coordinates, Image, Images, ThingTraits, Forces, Momentum, Thing, GameState } from '../types/GameTypes'
-import { getThingById } from '../engine/utils/ThingHelper'
+import { Canvas, Coordinates, Image, ThingTraits, Forces, Momentum, Thing, GameState } from '../types/GameTypes'
+import { getThingById, getThingImage } from '../engine/utils/ThingHelper'
 
 const Game = (canvas: HTMLCanvasElement, context: CanvasRenderingContext2D, images: Image[], state: GameState) => {
   const player = getThingById('player')
@@ -8,7 +8,10 @@ const Game = (canvas: HTMLCanvasElement, context: CanvasRenderingContext2D, imag
     // ...
   }
 
-  const draw = (context: CanvasRenderingContext2D): void => {}
+  const draw = (context: CanvasRenderingContext2D): void => {
+    const image = getThingImage('player')
+    // console.log(image)
+  }
 
   const tick = (): void => {
     updateState(state)

@@ -34,6 +34,7 @@ const init = async () => {
   const context = canvas.getContext('2d')
 
   ThingHelper.setThings(things)
+  ThingHelper.setImages(images)
 
   Game(canvas, context, images, state)
 }
