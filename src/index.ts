@@ -13,8 +13,8 @@ const init = async () => {
     console.info(`Preloading following ${imageNames.length} images:`)
     console.info(imageNames)
     images = await ImagePreloader.preload(imageNames)
-    console.info('The following images have been added to memory:')
-    console.info(images)
+    // console.info('The following images have been added to memory:')
+    // console.info(images)
   }
 
   const things: types.Thing[] = []

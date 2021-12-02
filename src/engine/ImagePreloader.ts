@@ -1,32 +1,28 @@
-// import { Image, Images } from '../types/GameTypes'
+import { Image } from '../types/GameTypes'
 
 const ImagePreloader = () => {
-  const promises = []
+  const loadImage = async (imageName: string) => {
+    const img = new Image()
+    img.src = `/images/${imageName}.png`
+    await img.decode()
+    return {
+      id: imageName,
+      element: img,
+    }
+  }
 
-  const loadImage = (imageName: string) => {
-    console.log(`Loading image "${imageName}"`)
-    promises.push(
-      new Promise((resolve, reject) => {
-        const imgElement = document.createElement('img')
-        imgElement.src = `/images/${imageName}.png`
-        imgElement.onload = () => {
-          console.log(`Successfully loaded image "${imageName}.png"`)
-          resolve({
-            id: imageName,
-            element: imgElement,
-          })
-        }
-        imgElement.onerror = reject
-      })
-    )
-
+  const loadImages = async (images: string[]) => {
     return new Promise((resolve, reject) => {
-      Promise.all(promises).then(resolve).catch(reject)
+      const promises = []
+      images.forEach((imageName) => {
+        promises.push(loadImage(imageName))
+      })
+      Promise.all(promises).then(resolve)
     })
   }
 
   const preload = async (images: string[]) => {
-    return Promise.all(images.map(loadImage))
+    return await loadImages(images)
   }
 
   return { preload }
