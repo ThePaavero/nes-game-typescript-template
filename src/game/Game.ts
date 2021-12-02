@@ -8,14 +8,19 @@ const Game = (canvas: HTMLCanvasElement, context: CanvasRenderingContext2D, imag
     // ...
   }
 
+  const drawPlayer = () => {
+    const img = getThingImage('player')
+    context.drawImage(img, player.position.x, player.position.y, player.width, player.height)
+  }
+
   const draw = (context: CanvasRenderingContext2D): void => {
-    const image = getThingImage('player')
+    drawPlayer()
   }
 
   const tick = (): void => {
     updateState(state)
     draw(context)
-    // requestAnimationFrame(tick)
+    requestAnimationFrame(tick)
   }
 
   const startGame = () => {

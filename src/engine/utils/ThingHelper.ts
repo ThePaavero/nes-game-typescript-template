@@ -3,20 +3,20 @@ import { Image, Thing } from '../../types/GameTypes'
 let things = []
 let images = []
 
-export const getThingById = (id: string): Thing | Error => {
-  return things.find((t: Thing) => t.id === id) || new Error(`No thing with ID "${id}"`)
+export const getThingById = (id: string): Thing => {
+  return things.find((t: Thing) => t.id === id)
 }
 
-export const getThingImage = (id: string): Image | Error => {
-  return images.find((i: Image) => i.id === id) || new Error(`No image with ID "${id}"`)
+export const getThingImage = (id: string): CanvasImageSource => {
+  return images.find((i: Image) => i.id === id)?.element
 }
 
 const ThingHelper = () => {
-  const setThings = (data: Thing[]) => {
+  const setThings = (data: Thing[]): void => {
     things = data
   }
 
-  const setImages = (data: Image[]) => {
+  const setImages = (data: Image[]): void => {
     images = data
   }
 
