@@ -10,7 +10,6 @@ const Game = (canvas: HTMLCanvasElement, context: CanvasRenderingContext2D, imag
 
   const draw = (context: CanvasRenderingContext2D): void => {
     const image = getThingImage('player')
-    console.log(image)
   }
 
   const tick = (): void => {

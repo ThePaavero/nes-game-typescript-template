@@ -11,21 +11,17 @@ const ImagePreloader = () => {
     }
   }
 
-  const loadImages = async (images: string[]) => {
+  const preloadImages = async (images: string[]): Promise<Image[]> => {
     return new Promise((resolve, reject) => {
       const promises = []
       images.forEach((imageName) => {
         promises.push(loadImage(imageName))
       })
-      Promise.all(promises).then(resolve)
+      Promise.all(promises).then(resolve).catch(reject)
     })
   }
 
-  const preload = async (images: string[]) => {
-    return await loadImages(images)
-  }
-
-  return { preload }
+  return { preloadImages }
 }
 
 export default ImagePreloader()

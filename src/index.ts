@@ -8,18 +8,12 @@ import Game from './game/Game'
 import ThingHelper from './engine/utils/ThingHelper'
 
 const init = async () => {
-  let images = []
-  if (imageNames.length) {
-    console.info(`Preloading following ${imageNames.length} images:`)
-    console.info(imageNames)
-    images = await ImagePreloader.preload(imageNames)
-    // console.info('The following images have been added to memory:')
-    // console.info(images)
-  }
+  const images = await ImagePreloader.preloadImages(imageNames)
 
   const things: types.Thing[] = []
   const player: types.Thing = Player
   things.push(player)
+
   const state: types.GameState = {
     things,
     paused: false,
