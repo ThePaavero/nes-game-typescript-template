@@ -7,8 +7,8 @@ const Game = (canvas: HTMLCanvasElement, context: CanvasRenderingContext2D, imag
 
   const applyForces = (things: Thing[]) => {
     things
-      .filter((thing) => thing.traits.moves)
-      .forEach((thing: Thing): void => {
+      .filter((thing: Thing) => thing.traits.moves)
+      .forEach((thing: Thing) => {
         logOnce(thing)
         thing.position.x += thing.momentum.forces.x
         thing.position.y += thing.momentum.forces.y
