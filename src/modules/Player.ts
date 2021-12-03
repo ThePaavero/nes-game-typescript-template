@@ -12,7 +12,6 @@ const Player = (): Thing => {
     traits: {
       moves: true,
       doHitChecks: true,
-      isControllable: true,
     },
     momentum: {
       forces: {

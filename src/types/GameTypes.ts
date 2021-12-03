@@ -16,7 +16,6 @@ export interface Image {
 export interface ThingTraits {
   moves: boolean
   doHitChecks: boolean
-  isControllable: boolean
 }
 
 export interface Forces {

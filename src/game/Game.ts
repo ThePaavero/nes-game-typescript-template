@@ -5,17 +5,28 @@ import { getThingById, getThingImage } from '../engine/utils/ThingHelper'
 const Game = (canvas: HTMLCanvasElement, context: CanvasRenderingContext2D, images: Image[], state: GameState) => {
   const player = getThingById('player')
 
+  const getThingsThatMove = (things: Thing[]): Thing[] => {
+    return things.filter((thing: Thing) => thing.traits.moves)
+  }
+
+  // TODO: Move to Engine.
   const applyForces = (things: Thing[]) => {
-    things
-      .filter((thing: Thing) => thing.traits.moves)
-      .forEach((thing: Thing) => {
-        logOnce(thing)
-        thing.position.x += thing.momentum.forces.x
-        thing.position.y += thing.momentum.forces.y
-      })
+    getThingsThatMove(things).forEach((thing: Thing) => {
+      thing.position.x += thing.momentum.forces.x
+      thing.position.y += thing.momentum.forces.y
+    })
+  }
+
+  // TODO: Move to Engine.
+  const updateForces = (things: Thing[], keysDown: string[]) => {
+    things.forEach((thing: Thing) => {
+      logOnce(thing)
+    })
   }
 
   const updateState = (state: GameState): void => {
+    // TODO: Call from Engine.
+    updateForces(state.things, state.keysDown)
     applyForces(state.things)
   }
 
