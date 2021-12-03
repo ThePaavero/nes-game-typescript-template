@@ -1,5 +1,4 @@
 import { GameState } from '../types/GameTypes'
-import { logOnce } from './utils/Misc'
 
 interface KeyMaps {
   a: string[]
@@ -13,8 +12,6 @@ interface KeyMaps {
 }
 
 const Controls = () => {
-  const eventTypes = ['up', 'down']
-
   const onNesButtonDown = (state: GameState, nesButton: string): void => {
     if (!state.keysDown.includes(nesButton)) {
       state.keysDown.push(nesButton)
@@ -37,6 +34,7 @@ const Controls = () => {
   }
 
   const init = (keyMap: KeyMaps, state: GameState): void => {
+    const eventTypes = ['up', 'down']
     eventTypes.forEach((eventType) => {
       document.addEventListener(`key${eventType}`, (e: KeyboardEvent) => {
         Object.keys(keyMap).forEach((nesControllerButton) => {
