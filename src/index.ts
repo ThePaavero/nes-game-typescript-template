@@ -1,6 +1,7 @@
 import * as types from './types/GameTypes'
 import Config from './../GameConfig'
 import ImagePreloader from './engine/ImagePreloader'
+import Controls from './engine/Controls'
 import Player from './modules/Player'
 import './scss/main.scss'
 import imageNames from './../images.json'
@@ -19,6 +20,8 @@ const init = async () => {
     paused: false,
     keysDown: [],
   }
+
+  Controls.init(Config.controlKeyMaps, state.keysDown)
 
   const canvas = document.createElement('canvas')
   canvas.width = Config.width
