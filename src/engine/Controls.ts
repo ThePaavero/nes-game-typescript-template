@@ -24,6 +24,17 @@ const Controls = () => {
     keysDown = keysDown.filter((k) => k !== nesButton)
   }
 
+  const processButtonEvent = (eventType: string, keysDown: string[], nesControllerButton: string) => {
+    switch (eventType) {
+      case 'down':
+        onNesButtonDown(keysDown, nesControllerButton)
+        break
+      case 'up':
+        onNesButtonUp(keysDown, nesControllerButton)
+        break
+    }
+  }
+
   const init = (keyMap: KeyMaps, keysDown: string[]) => {
     eventTypes.forEach((eventType) => {
       document.addEventListener(`key${eventType}`, (e: KeyboardEvent) => {
@@ -32,14 +43,7 @@ const Controls = () => {
           if (!keyArray.includes(e.key.toLowerCase())) {
             return
           }
-          switch (eventType) {
-            case 'down':
-              onNesButtonDown(keysDown, nesControllerButton)
-              break
-            case 'up':
-              onNesButtonUp(keysDown, nesControllerButton)
-              break
-          }
+          processButtonEvent(eventType, keysDown, nesControllerButton)
         })
       })
     })
