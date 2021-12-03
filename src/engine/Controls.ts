@@ -16,7 +16,6 @@ const Controls = () => {
   const eventTypes = ['up', 'down']
 
   const onNesButtonDown = (state: GameState, nesButton: string): void => {
-    console.log('DOWN')
     if (!state.keysDown.includes(nesButton)) {
       state.keysDown.push(nesButton)
     }
