@@ -1,7 +1,7 @@
 import { Image } from '../types/GameTypes'
 
 const ImagePreloader = () => {
-  const loadImage = async (imageName: string): Promise<Image> => {
+  const preloadSingleImage = async (imageName: string): Promise<Image> => {
     const img = new Image()
     img.src = `/images/${imageName}.png`
     await img.decode()
@@ -15,7 +15,7 @@ const ImagePreloader = () => {
     return new Promise((resolve, reject) => {
       const promises = []
       images.forEach((imageName) => {
-        promises.push(loadImage(imageName))
+        promises.push(preloadSingleImage(imageName))
       })
       Promise.all(promises).then(resolve).catch(reject)
     })

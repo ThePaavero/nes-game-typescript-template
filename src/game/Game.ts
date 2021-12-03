@@ -11,14 +11,14 @@ const Game = (canvas: HTMLCanvasElement, context: CanvasRenderingContext2D, imag
     applyInertia(state.things)
   }
 
-  const drawPlayer = (): void => {
+  const drawPlayer = (context: CanvasRenderingContext2D): void => {
     const img = getThingImage('player')
     context.drawImage(img, player.position.x, player.position.y, player.width, player.height)
   }
 
   const draw = (context: CanvasRenderingContext2D): void => {
     context.clearRect(0, 0, canvas.width, canvas.height)
-    drawPlayer()
+    drawPlayer(context)
   }
 
   const tick = (): void => {

@@ -7,6 +7,7 @@ import './scss/main.scss'
 import imageNames from './../images.json'
 import Game from './game/Game'
 import ThingHelper from './engine/utils/ThingHelper'
+import { setUpDebugger } from './engine/utils/StateDebugger'
 
 const init = async () => {
   const images = await ImagePreloader.preloadImages(imageNames)
@@ -34,14 +35,7 @@ const init = async () => {
   ThingHelper.setImages(images)
 
   if (Config.useDebugger) {
-    const element = document.querySelector('.debugger')
-    setInterval(() => {
-      element.innerHTML = `
-      <pre>
-        ${JSON.stringify(state, null, 2)}
-      </pre>
-      `
-    }, 50)
+    setUpDebugger(state, 100)
   }
 
   Game(canvas, context, images, state)
