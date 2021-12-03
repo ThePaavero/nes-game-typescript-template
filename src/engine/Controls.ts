@@ -15,28 +15,34 @@ interface KeyMaps {
 const Controls = () => {
   const eventTypes = ['up', 'down']
 
-  const onNesButtonDown = (keysDown: string[], nesButton: string) => {
-    if (!keysDown.includes(nesButton)) {
-      keysDown.push(nesButton)
+  const onNesButtonDown = (state: GameState, nesButton: string) => {
+    console.log('DOWN')
+    if (!state.keysDown.includes(nesButton)) {
+      state.keysDown.push(nesButton)
     }
   }
 
-  const onNesButtonUp = (keysDown: string[], nesButton: string) => {
-    keysDown = keysDown.filter((k) => k !== nesButton)
+  // const onNesButtonUp = (keysDown: string[], nesButton: string) => {
+  //   console.log('UP')
+  //   keysDown = keysDown.filter((k) => k !== nesButton)
+  // }
+
+  const onNesButtonUp = (state: GameState, nesButton: string) => {
+    state.keysDown = state.keysDown.filter((k) => k !== nesButton)
   }
 
-  const processButtonEvent = (eventType: string, keysDown: string[], nesControllerButton: string) => {
+  const processButtonEvent = (eventType: string, state: GameState, nesControllerButton: string) => {
     switch (eventType) {
       case 'down':
-        onNesButtonDown(keysDown, nesControllerButton)
+        onNesButtonDown(state, nesControllerButton)
         break
       case 'up':
-        onNesButtonUp(keysDown, nesControllerButton)
+        onNesButtonUp(state, nesControllerButton)
         break
     }
   }
 
-  const init = (keyMap: KeyMaps, keysDown: string[]) => {
+  const init = (keyMap: KeyMaps, state: GameState) => {
     eventTypes.forEach((eventType) => {
       document.addEventListener(`key${eventType}`, (e: KeyboardEvent) => {
         Object.keys(keyMap).forEach((nesControllerButton) => {
@@ -44,7 +50,7 @@ const Controls = () => {
           if (!keyArray.includes(e.key.toLowerCase())) {
             return
           }
-          processButtonEvent(eventType, keysDown, nesControllerButton)
+          processButtonEvent(eventType, state, nesControllerButton)
         })
       })
     })

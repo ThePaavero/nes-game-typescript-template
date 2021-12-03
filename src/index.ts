@@ -21,7 +21,7 @@ const init = async () => {
     keysDown: [],
   }
 
-  Controls.init(Config.controlKeyMaps, state.keysDown)
+  Controls.init(Config.controlKeyMaps, state)
 
   const canvas = document.createElement('canvas')
   canvas.width = Config.width
