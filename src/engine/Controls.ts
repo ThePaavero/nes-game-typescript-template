@@ -12,20 +12,35 @@ interface KeyMaps {
 }
 
 const Controls = () => {
+  const eventTypes = ['up', 'down']
+
   const onNesButtonDown = (keysDown: string[], nesButton: string) => {
     if (!keysDown.includes(nesButton)) {
       keysDown.push(nesButton)
     }
   }
 
+  const onNesButtonUp = (keysDown: string[], nesButton: string) => {
+    keysDown = keysDown.filter((k) => k !== nesButton)
+  }
+
   const init = (keyMap: KeyMaps, keysDown: string[]) => {
-    document.addEventListener('keydown', (e: KeyboardEvent) => {
-      Object.keys(keyMap).forEach((nesControllerButton) => {
-        const keyArray = keyMap[nesControllerButton]
-        if (!keyArray.includes(e.key.toLowerCase())) {
-          return
-        }
-        onNesButtonDown(keysDown, nesControllerButton)
+    eventTypes.forEach((eventType) => {
+      document.addEventListener(`key${eventType}`, (e: KeyboardEvent) => {
+        Object.keys(keyMap).forEach((nesControllerButton) => {
+          const keyArray = keyMap[nesControllerButton]
+          if (!keyArray.includes(e.key.toLowerCase())) {
+            return
+          }
+          switch (eventType) {
+            case 'down':
+              onNesButtonDown(keysDown, nesControllerButton)
+              break
+            case 'up':
+              onNesButtonUp(keysDown, nesControllerButton)
+              break
+          }
+        })
       })
     })
   }
