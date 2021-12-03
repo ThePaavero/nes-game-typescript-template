@@ -1,6 +1,6 @@
 let loggedOnce = false
 
-export const logOnce = (toLog: any) => {
+export const logOnce = (toLog: any): void => {
   if (loggedOnce) {
     return
   }

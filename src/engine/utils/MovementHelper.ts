@@ -2,7 +2,7 @@ import { Thing } from '../../types/GameTypes'
 import { buttonIsPressed } from './Misc'
 import { getThingById } from './ThingHelper'
 
-export const updatePlayerForces = (player: Thing, keysDown: string[]) => {
+export const updatePlayerForces = (player: Thing, keysDown: string[]): void => {
   const add = player.momentum.acceleration
   if (buttonIsPressed('up', keysDown)) {
     player.momentum.forces.y -= add
@@ -18,19 +18,19 @@ export const updatePlayerForces = (player: Thing, keysDown: string[]) => {
   }
 }
 
-export const updateForces = (things: Thing[], keysDown: string[]) => {
+export const updateForces = (things: Thing[], keysDown: string[]): void => {
   updatePlayerForces(getThingById('player'), keysDown)
   // TODO: Update the rest of moving things.
 }
 
-export const applyForces = (things: Thing[]) => {
+export const applyForces = (things: Thing[]): void => {
   getThingsThatMove(things).forEach((thing: Thing) => {
     thing.position.x += thing.momentum.forces.x
     thing.position.y += thing.momentum.forces.y
   })
 }
 
-export const applyInertia = (things: Thing[]) => {
+export const applyInertia = (things: Thing[]): void => {
   // TODO: This is fucked.
   // getThingsThatMove(things).forEach((thing: Thing) => {
   //   if (thing.momentum.forces.x > 0) {
