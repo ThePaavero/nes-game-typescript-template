@@ -46,3 +46,9 @@ export interface GameState {
   paused: boolean
   keysDown: string[]
 }
+
+declare global {
+  interface Window {
+    ___NES_GAME_GLOBALS: any
+  }
+}

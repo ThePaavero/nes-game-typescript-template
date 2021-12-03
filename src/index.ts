@@ -48,3 +48,5 @@ const init = async () => {
 }
 
 init()
+
+window.___NES_GAME_GLOBALS = {}

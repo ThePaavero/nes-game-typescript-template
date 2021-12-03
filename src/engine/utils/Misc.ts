@@ -1,11 +1,10 @@
-let loggedOnce = false
-
 export const logOnce = (toLog: any): void => {
-  if (loggedOnce) {
+  const globalVarKey = '___NES_GAME_GLOBALS'
+  if (window[globalVarKey].NES_GAME_loggedOnce) {
     return
   }
   console.log(toLog)
-  loggedOnce = true
+  window[globalVarKey].NES_GAME_loggedOnce = true
 }
 
 export const buttonIsPressed = (slug: string, keysDown: string[]): boolean => {
