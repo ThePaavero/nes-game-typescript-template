@@ -7,3 +7,7 @@ export const logOnce = (toLog: any) => {
   console.log(toLog)
   loggedOnce = true
 }
+
+export const buttonIsPressed = (slug: string, keysDown: string[]): boolean => {
+  return keysDown.includes(slug)
+}
