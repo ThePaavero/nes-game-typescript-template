@@ -33,6 +33,17 @@ const init = async () => {
   ThingHelper.setThings(things)
   ThingHelper.setImages(images)
 
+  if (Config.useDebugger) {
+    const element = document.querySelector('.debugger')
+    setInterval(() => {
+      element.innerHTML = `
+      <pre>
+        ${JSON.stringify(state, null, 2)}
+      </pre>
+      `
+    }, 50)
+  }
+
   Game(canvas, context, images, state)
 }
 

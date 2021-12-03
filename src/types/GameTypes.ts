@@ -26,6 +26,7 @@ export interface Forces {
 export interface Momentum {
   forces: Forces
   inertia: number
+  maxForces: Forces
 }
 
 export interface Thing {

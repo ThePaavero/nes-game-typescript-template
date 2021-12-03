@@ -18,9 +18,39 @@ const Game = (canvas: HTMLCanvasElement, context: CanvasRenderingContext2D, imag
   }
 
   // TODO: Move to Engine.
+  const applyInertia = (things: Thing[]) => {
+    getThingsThatMove(things).forEach((thing: Thing) => {
+      if (Math.abs(thing.momentum.forces.x) > 0) {
+        if (thing.momentum.forces.x > 0) {
+          thing.momentum.forces.x -= thing.momentum.inertia
+        } else {
+          thing.momentum.forces.x += thing.momentum.inertia
+        }
+      }
+    })
+  }
+
+  // TODO: Move to Engine.
+  const buttonIsPressed = (slug: string, keysDown: string[]): boolean => {
+    return keysDown.includes(slug)
+  }
+
+  // TODO: Move to Engine.
   const updateForces = (things: Thing[], keysDown: string[]) => {
+    const add = 0.1
     things.forEach((thing: Thing) => {
-      logOnce(thing)
+      if (buttonIsPressed('up', keysDown)) {
+        thing.momentum.forces.y -= add
+      }
+      if (buttonIsPressed('down', keysDown)) {
+        thing.momentum.forces.y += add
+      }
+      if (buttonIsPressed('left', keysDown)) {
+        thing.momentum.forces.x -= add
+      }
+      if (buttonIsPressed('right', keysDown)) {
+        thing.momentum.forces.x += add
+      }
     })
   }
 
@@ -28,6 +58,7 @@ const Game = (canvas: HTMLCanvasElement, context: CanvasRenderingContext2D, imag
     // TODO: Call from Engine.
     updateForces(state.things, state.keysDown)
     applyForces(state.things)
+    applyInertia(state.things)
   }
 
   const drawPlayer = () => {
