@@ -11,9 +11,12 @@ const ImagePreloader = () => {
     }
   }
 
-  const preloadImages = async (images: string[]): Promise<Image[]> => {
+  interface PersonResponse {
+    success: boolean
+  }
+  const preloadImages = async (images: string[]): Promise<Image[] | undefined> => {
     return new Promise((resolve, reject) => {
-      const promises = []
+      const promises: any = []
       images.forEach((imageName) => {
         promises.push(preloadSingleImage(imageName))
       })

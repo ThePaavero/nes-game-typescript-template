@@ -1,7 +1,7 @@
 import { Image, Thing } from '../../types/GameTypes'
 
-let things = []
-let images = []
+let things: Thing[] = []
+let images: Image[] = []
 
 export const getThingById = (id: string): Thing => {
   return things.find((t: Thing) => t.id === id)
