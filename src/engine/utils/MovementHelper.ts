@@ -1,4 +1,4 @@
-import { Thing } from '../../types/GameTypes'
+import { Coordinates, Thing } from '../../types/GameTypes'
 import { buttonIsPressed } from './Misc'
 import { getThingById } from './ThingHelper'
 
@@ -40,15 +40,21 @@ export const applyForces = (things: Thing[]): void => {
 }
 
 export const applyInertia = (things: Thing[]): void => {
-  // TODO: This is fucked.
+  // TODO: Still fucked.
   // getThingsThatMove(things).forEach((thing: Thing) => {
-  //   if (thing.momentum.forces.x > 0) {
-  //     thing.momentum.forces.x -= thing.momentum.inertia
-  //   } else if (thing.momentum.forces.x < 0) {
-  //     thing.momentum.forces.x += thing.momentum.inertia
-  //   } else {
+  //   if (thing.momentum.forces.x < 0.1) {
   //     thing.momentum.forces.x = 0
+  //   } else {
+  //     if (thing.momentum.forces.x > 0) {
+  //       thing.momentum.forces.x -= thing.momentum.inertia
+  //     } else if (thing.momentum.forces.x < 0) {
+  //       thing.momentum.forces.x += thing.momentum.inertia
+  //     } else {
+  //       thing.momentum.forces.x = 0
+  //     }
   //   }
+  //   thing.momentum.forces.x = round(thing.momentum.forces.x)
+  //   thing.momentum.forces.y = round(thing.momentum.forces.y)
   // })
 }
 
