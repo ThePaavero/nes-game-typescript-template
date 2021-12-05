@@ -2,6 +2,10 @@ import { Thing } from '../../types/GameTypes'
 import { buttonIsPressed } from './Misc'
 import { getThingById } from './ThingHelper'
 
+export const round = (number: number): number => {
+  return parseFloat(number.toFixed(1))
+}
+
 export const updatePlayerForces = (player: Thing, keysDown: string[]): void => {
   const add = player.momentum.acceleration
   if (buttonIsPressed('up', keysDown)) {
@@ -16,6 +20,9 @@ export const updatePlayerForces = (player: Thing, keysDown: string[]): void => {
   if (buttonIsPressed('right', keysDown)) {
     player.momentum.forces.x += add
   }
+
+  player.momentum.forces.x = round(player.momentum.forces.x)
+  player.momentum.forces.y = round(player.momentum.forces.y)
 }
 
 export const updateForces = (things: Thing[], keysDown: string[]): void => {
@@ -27,6 +34,8 @@ export const applyForces = (things: Thing[]): void => {
   getThingsThatMove(things).forEach((thing: Thing) => {
     thing.position.x += thing.momentum.forces.x
     thing.position.y += thing.momentum.forces.y
+    thing.position.x = round(thing.position.x)
+    thing.position.y = round(thing.position.y)
   })
 }
 

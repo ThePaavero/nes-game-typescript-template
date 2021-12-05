@@ -1,4 +1,4 @@
-import { GameState } from '../types/GameTypes'
+import { GameState, NesButtons } from '../types/GameTypes'
 
 const Controls = () => {
   const onNesButtonDown = (state: GameState, nesButton: string): void => {
@@ -8,10 +8,11 @@ const Controls = () => {
   }
 
   const onNesButtonUp = (state: GameState, nesButton: string): void => {
-    state.keysDown = state.keysDown.filter((k) => k !== nesButton)
+    state.keysDown = state.keysDown.filter((k: string) => k !== nesButton)
   }
 
   const processButtonEvent = (eventType: string, state: GameState, nesControllerButton: string): void => {
+    console.log(nesControllerButton)
     switch (eventType) {
       case 'down':
         onNesButtonDown(state, nesControllerButton)
