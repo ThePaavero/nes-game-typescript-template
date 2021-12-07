@@ -30,7 +30,6 @@ const Controls = () => {
         const keys: string[] = Object.keys(keyMap)
         keys.forEach((nesControllerButton) => {
           const keyArray = keyMap[nesControllerButton]
-
           if (!keyArray.includes(e.key.toLowerCase())) {
             return
           }
