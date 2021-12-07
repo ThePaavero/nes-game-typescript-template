@@ -41,7 +41,6 @@ export const applyForces = (things: Thing[]): void => {
 }
 
 export const applyInertia = (things: Thing[]): void => {
-  // TODO: Still fucked. Works alright when moving to the right 🤷.
   getThingsThatMove(things).forEach((thing: Thing) => {
     if (Math.abs(thing.momentum.forces.x) < 0.1) {
       thing.momentum.forces.x = 0
