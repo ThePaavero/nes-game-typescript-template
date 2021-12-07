@@ -22,8 +22,8 @@ const Player = (): Thing => {
         x: 1,
         y: 1,
       },
-      acceleration: 0.2,
-      inertia: 0.05,
+      acceleration: 0.15,
+      inertia: 0.08,
     },
     mass: 50,
   }
