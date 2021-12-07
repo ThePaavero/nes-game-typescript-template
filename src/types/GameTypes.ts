@@ -21,6 +21,7 @@ export interface ThingTraits {
 export interface Forces {
   x: number
   y: number
+  [index: string]: number
 }
 
 export interface Momentum {

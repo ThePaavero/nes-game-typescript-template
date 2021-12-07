@@ -41,29 +41,46 @@ export const applyForces = (things: Thing[]): void => {
 }
 
 export const applyInertia = (things: Thing[]): void => {
+  interface AxisIndex {
+    [key: number]: string
+  }
   getThingsThatMove(things).forEach((thing: Thing) => {
-    if (Math.abs(thing.momentum.forces.x) < 0.1) {
-      thing.momentum.forces.x = 0
-    } else {
-      if (thing.momentum.forces.x > 0) {
-        thing.momentum.forces.x -= thing.momentum.inertia
-      } else if (thing.momentum.forces.x < 0) {
-        thing.momentum.forces.x += thing.momentum.inertia
+    const axes = ['x', 'y']
+    axes.forEach((axis: string) => {
+      if (Math.abs(thing.momentum.forces[axis]) < 0.1) {
+        thing.momentum.forces[axis] = 0
       } else {
-        thing.momentum.forces.x = 0
+        if (thing.momentum.forces[axis] > 0) {
+          thing.momentum.forces[axis] -= thing.momentum.inertia
+        } else if (thing.momentum.forces[axis] < 0) {
+          thing.momentum.forces[axis] += thing.momentum.inertia
+        } else {
+          thing.momentum.forces[axis] = 0
+        }
       }
-    }
-    if (Math.abs(thing.momentum.forces.y) < 0.1) {
-      thing.momentum.forces.y = 0
-    } else {
-      if (thing.momentum.forces.y > 0) {
-        thing.momentum.forces.y -= thing.momentum.inertia
-      } else if (thing.momentum.forces.y < 0) {
-        thing.momentum.forces.y += thing.momentum.inertia
-      } else {
-        thing.momentum.forces.y = 0
-      }
-    }
+    })
+    // if (Math.abs(thing.momentum.forces.x) < 0.1) {
+    //   thing.momentum.forces.x = 0
+    // } else {
+    //   if (thing.momentum.forces.x > 0) {
+    //     thing.momentum.forces.x -= thing.momentum.inertia
+    //   } else if (thing.momentum.forces.x < 0) {
+    //     thing.momentum.forces.x += thing.momentum.inertia
+    //   } else {
+    //     thing.momentum.forces.x = 0
+    //   }
+    // }
+    // if (Math.abs(thing.momentum.forces.y) < 0.1) {
+    //   thing.momentum.forces.y = 0
+    // } else {
+    //   if (thing.momentum.forces.y > 0) {
+    //     thing.momentum.forces.y -= thing.momentum.inertia
+    //   } else if (thing.momentum.forces.y < 0) {
+    //     thing.momentum.forces.y += thing.momentum.inertia
+    //   } else {
+    //     thing.momentum.forces.y = 0
+    //   }
+    // }
     thing.momentum.forces.x = round(thing.momentum.forces.x)
     thing.momentum.forces.y = round(thing.momentum.forces.y)
   })
