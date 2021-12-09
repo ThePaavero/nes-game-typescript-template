@@ -17,7 +17,7 @@ export interface ControlKeyMap {
   start: string[]
   b: string[]
   a: string[]
-  [index: symbol]: string[]
+  [index: string]: string[]
 }
 
 export interface Canvas {
