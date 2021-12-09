@@ -12,8 +12,8 @@ export default {
     right: ['d', 'arrowright'],
     select: ['shift'],
     start: ['control', 'enter'],
-    b: [','],
-    a: ['.'],
+    b: [',', 'z'],
+    a: ['.', 'x'],
   },
   useDebugger: true,
 } as GameConfig

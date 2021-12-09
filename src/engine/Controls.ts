@@ -1,5 +1,4 @@
-import { GameState } from '../types/GameTypes'
-import { ControlKeyMap } from './../types/GameTypes'
+import { GameState, ControlKeyMap } from '../types/GameTypes'
 
 const Controls = () => {
   const onNesButtonDown = (state: GameState, nesButton: string): void => {
