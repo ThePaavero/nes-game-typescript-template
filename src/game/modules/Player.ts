@@ -1,4 +1,4 @@
-import { Thing } from '../types/GameTypes'
+import { Thing } from './../../types/GameTypes'
 
 const Player = (): Thing => {
   return {

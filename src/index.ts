@@ -2,7 +2,6 @@ import { Thing, GameState } from './types/GameTypes'
 import Config from './../GameConfig'
 import ImagePreloader from './engine/ImagePreloader'
 import Controls from './engine/Controls'
-import Player from './modules/Player'
 import './scss/main.scss'
 import imageNames from './../images.json'
 import Game from './game/Game'
@@ -11,11 +10,7 @@ import { setUpDebugger } from './engine/utils/StateDebugger'
 
 const init = async () => {
   const images = await ImagePreloader.preloadImages(imageNames)
-
   const things: Thing[] = []
-  const player: Thing = Player
-  things.push(player)
-
   const state: GameState = {
     things,
     paused: false,
