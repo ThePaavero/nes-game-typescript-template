@@ -1,10 +1,11 @@
+import { GameConfig } from './src/types/GameTypes'
 export default {
   name: 'Example Game',
   width: 256,
   height: 240,
   fps: 60,
   scanLines: false,
-  controlKeyMaps: {
+  controlKeyMap: {
     up: ['w', 'arrowup'],
     down: ['s', 'arrowdown'],
     left: ['a', 'arrowleft'],
@@ -15,4 +16,4 @@ export default {
     a: ['.'],
   },
   useDebugger: true,
-}
+} as GameConfig

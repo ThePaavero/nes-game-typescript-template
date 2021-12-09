@@ -1,3 +1,25 @@
+export interface GameConfig {
+  name: string
+  width: number
+  height: number
+  fps: number
+  scanLines: boolean
+  controlKeyMap: ControlKeyMap
+  useDebugger: boolean
+}
+
+export interface ControlKeyMap {
+  up: string[]
+  down: string[]
+  left: string[]
+  right: string[]
+  select: string[]
+  start: string[]
+  b: string[]
+  a: string[]
+  [index: symbol]: string[]
+}
+
 export interface Canvas {
   width: number
   height: number
