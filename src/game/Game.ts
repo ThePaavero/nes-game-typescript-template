@@ -2,6 +2,7 @@ import { updateForces, applyForces, applyInertia } from '../engine/utils/Movemen
 import { Canvas, Coordinates, Image, ThingTraits, Forces, Momentum, Thing, GameState } from '../types/GameTypes'
 import { getThingById, getThingImage } from '../engine/utils/ThingHelper'
 import Player from './modules/Player'
+import { logOnce } from '../engine/utils/Misc'
 
 const Game = (canvas: HTMLCanvasElement, context: CanvasRenderingContext2D, images: Image[], state: GameState): void => {
   const player: Thing = Player
@@ -29,9 +30,15 @@ const Game = (canvas: HTMLCanvasElement, context: CanvasRenderingContext2D, imag
     requestAnimationFrame(tick)
   }
 
+  const applyInitialPlayerPosition = () => {
+    player.position.x = canvas.width / 2 - player.width / 2
+    player.position.y = canvas.height / 2 - player.height / 2
+  }
+
   const startGame = (): void => {
     console.log('Starting Game module with state:', state)
     console.log('Starting Game module with images:', images)
+    applyInitialPlayerPosition()
     tick()
   }
 

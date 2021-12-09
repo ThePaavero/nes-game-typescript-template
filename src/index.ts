@@ -34,7 +34,7 @@ const init = async () => {
     setUpDebugger(state, 100)
   }
 
-  if (Config.scanLines) {
+  if (!Config.scanLines) {
     document.querySelector('.game').classList.remove('scanlines')
   }
 
