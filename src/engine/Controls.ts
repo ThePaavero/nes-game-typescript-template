@@ -13,7 +13,6 @@ const Controls = () => {
   }
 
   const processButtonEvent = (eventType: string, state: GameState, nesControllerButton: string): void => {
-    console.log(nesControllerButton)
     switch (eventType) {
       case 'down':
         onNesButtonDown(state, nesControllerButton)

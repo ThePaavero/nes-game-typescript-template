@@ -1,5 +1,6 @@
+const globalVarKey = '___NES_GAME_GLOBALS'
+
 export const logOnce = (toLog: any): void => {
-  const globalVarKey = '___NES_GAME_GLOBALS'
   if (window[globalVarKey].NES_GAME_loggedOnce) {
     return
   }

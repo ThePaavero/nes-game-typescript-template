@@ -30,6 +30,7 @@ const init = async () => {
   document.querySelector('.game').appendChild(canvas)
 
   const context = canvas.getContext('2d')
+  context.imageSmoothingEnabled = false
 
   ThingHelper.setThings(things)
   ThingHelper.setImages(images)
