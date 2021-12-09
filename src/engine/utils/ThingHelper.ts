@@ -12,20 +12,16 @@ export const getThingImage = (id: string): CanvasImageSource => {
 }
 
 export const keepThingWithinScreen = (thing: Thing, canvas: HTMLCanvasElement) => {
-  if (thing.position.x <= 0) {
-    thing.position.x = 0
-    thing.momentum.forces.x = 0
-  } else if (thing.position.x >= canvas.width - thing.width) {
-    thing.position.x = canvas.width - thing.width
-    thing.momentum.forces.x = 0
-  }
-  if (thing.position.y <= 0) {
-    thing.position.y = 0
-    thing.momentum.forces.y = 0
-  } else if (thing.position.y >= canvas.height - thing.height) {
-    thing.position.y = canvas.height - thing.height
-    thing.momentum.forces.y = 0
-  }
+  const axes = ['x', 'y']
+  axes.forEach((axis: string) => {
+    if (thing.position[axis] <= 0) {
+      thing.position[axis] = 0
+      thing.momentum.forces[axis] = 0
+    } else if (thing.position[axis] >= canvas.width - thing.width) {
+      thing.position[axis] = canvas.width - thing.width
+      thing.momentum.forces[axis] = 0
+    }
+  })
 }
 
 const ThingHelper = () => {

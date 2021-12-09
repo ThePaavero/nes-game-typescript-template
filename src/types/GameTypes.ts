@@ -28,6 +28,7 @@ export interface Canvas {
 export interface Coordinates {
   x: number
   y: number
+  [index: string]: number
 }
 
 export interface Image {
