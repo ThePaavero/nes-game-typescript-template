@@ -1,4 +1,4 @@
-import { GameState, NesButtons } from '../types/GameTypes'
+import { GameState } from '../types/GameTypes'
 import { ControlKeyMap } from './../types/GameTypes'
 
 const Controls = () => {

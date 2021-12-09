@@ -70,17 +70,6 @@ export interface GameState {
   keysDown: string[]
 }
 
-export enum NesButtons {
-  up,
-  down,
-  left,
-  right,
-  a,
-  b,
-  start,
-  select,
-}
-
 declare global {
   interface Window {
     ___NES_GAME_GLOBALS: any
