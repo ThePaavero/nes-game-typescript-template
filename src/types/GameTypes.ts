@@ -55,13 +55,13 @@ export interface Momentum {
 
 export interface Thing {
   id: string | undefined
-  image?: Image | undefined
+  image?: Image
   width: number | undefined
   height: number | undefined
   position: Coordinates | undefined
   traits: ThingTraits | undefined
   momentum: Momentum | undefined
-  mass?: number | undefined
+  mass?: number
 }
 
 export interface GameState {
