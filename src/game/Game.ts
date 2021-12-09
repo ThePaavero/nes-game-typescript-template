@@ -1,6 +1,6 @@
 import { updateForces, applyForces, applyInertia } from '../engine/utils/MovementHelper'
 import { Canvas, Coordinates, Image, ThingTraits, Forces, Momentum, Thing, GameState } from '../types/GameTypes'
-import { getThingById, getThingImage } from '../engine/utils/ThingHelper'
+import { getThingById, getThingImage, keepThingWithinScreen } from '../engine/utils/ThingHelper'
 import Player from './modules/Player'
 import { logOnce } from '../engine/utils/Misc'
 
@@ -12,6 +12,7 @@ const Game = (canvas: HTMLCanvasElement, context: CanvasRenderingContext2D, imag
     updateForces(state.things, state.keysDown)
     applyForces(state.things)
     applyInertia(state.things)
+    keepThingWithinScreen(player, canvas)
   }
 
   const drawPlayer = (context: CanvasRenderingContext2D): void => {

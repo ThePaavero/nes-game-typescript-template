@@ -1,4 +1,5 @@
 import { GameConfig } from './src/types/GameTypes'
+
 export default {
   name: 'Example Game',
   width: 256,
@@ -15,5 +16,5 @@ export default {
     b: [',', 'z'],
     a: ['.', 'x'],
   },
-  useDebugger: true,
+  useDebugger: false,
 } as GameConfig
