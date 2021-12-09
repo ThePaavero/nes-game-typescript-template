@@ -14,11 +14,12 @@ export const getThingImage = (id: string): CanvasImageSource => {
 export const keepThingWithinScreen = (thing: Thing, canvas: HTMLCanvasElement) => {
   const axes = ['x', 'y']
   axes.forEach((axis: string) => {
+    const dimension = axis === 'x' ? 'width' : 'height'
     if (thing.position[axis] <= 0) {
       thing.position[axis] = 0
       thing.momentum.forces[axis] = 0
-    } else if (thing.position[axis] >= canvas.width - thing.width) {
-      thing.position[axis] = canvas.width - thing.width
+    } else if (thing.position[axis] >= canvas[dimension] - thing[dimension]) {
+      thing.position[axis] = canvas[dimension] - thing[dimension]
       thing.momentum.forces[axis] = 0
     }
   })
