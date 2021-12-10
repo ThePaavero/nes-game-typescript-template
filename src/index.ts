@@ -1,15 +1,15 @@
-import { Thing, GameState } from './types/GameTypes'
 import Config from './../GameConfig'
 import ImagePreloader from './engine/ImagePreloader'
 import Controls from './engine/Controls'
-import './scss/main.scss'
 import imageNames from './../images.json'
-import Game from './game/Game'
 import ThingHelper from './engine/utils/ThingHelper'
+import Game from './game/Game'
+import { Thing, GameState } from './types/GameTypes'
 import { setUpDebugger } from './engine/utils/StateDebugger'
+import './scss/main.scss'
 
 const init = async () => {
-  const images = await ImagePreloader.preloadImages(imageNames)
+  const images = await ImagePreloader(imageNames)
   const things: Thing[] = []
   const state: GameState = {
     things,
