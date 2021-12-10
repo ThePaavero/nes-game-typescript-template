@@ -12,9 +12,7 @@ const ImagePreloader = () => {
   }
 
   const preloadImages = async (images: string[]): Promise<Image[]> => {
-    return new Promise((resolve, reject) => {
-      Promise.all(images.map(preloadSingleImage)).then(resolve).catch(reject)
-    })
+    return Promise.all(images.map(preloadSingleImage))
   }
 
   return { preloadImages }
