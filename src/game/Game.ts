@@ -90,9 +90,6 @@ const Game = (
     console.log('Starting Game module with state:', state)
     console.log('Starting Game module with images:', images)
     applyInitialPlayerPosition()
-    setTimeout(() => {
-      console.log(state.things)
-    }, 10000)
     tick()
   }
 
