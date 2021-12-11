@@ -7,8 +7,8 @@ export const getThingById = (id: string): Thing => {
   return things.find((t: Thing) => t.id === id)
 }
 
-export const getThingImage = (id: string): CanvasImageSource => {
-  return images.find((i: Image) => i.id === id)?.element
+export const getThingImage = (id: string): HTMLImageElement | CanvasImageSource | null => {
+  return images.find((i: Image) => i.id === id).element || null
 }
 
 export const keepThingWithinScreen = (thing: Thing, canvas: HTMLCanvasElement) => {
@@ -23,6 +23,10 @@ export const keepThingWithinScreen = (thing: Thing, canvas: HTMLCanvasElement) =
       thing.momentum.forces[axis] = 0
     }
   })
+}
+
+export const removeThing = (thing: Thing, things: Thing[]): void => {
+  things = things.filter((t) => t !== thing)
 }
 
 const ThingHelper = () => {

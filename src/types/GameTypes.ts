@@ -56,7 +56,6 @@ export interface Momentum {
 
 export interface Thing {
   id: string | undefined
-  image?: Image
   width: number | undefined
   height: number | undefined
   position: Coordinates | undefined
