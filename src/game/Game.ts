@@ -22,7 +22,6 @@ const Game = (
     killOffScreenThings(state.things, canvas)
 
     if (shouldSpawnEnemy()) {
-      console.log('Spawning enemy...')
       spawnEnemy(state.things)
     }
   }
@@ -31,10 +30,10 @@ const Game = (
     const floor = canvas.height
 
     getThingsThatMove(things).forEach((thing: Thing) => {
-      const ceiling = thing.height
+      const ceiling = thing.height * -1
       const walls = {
-        left: thing.width * -1,
-        right: canvas.width,
+        left: thing.width,
+        right: canvas.width + thing.width,
       }
       if (
         thing.position.y >= floor ||
@@ -42,7 +41,7 @@ const Game = (
         thing.position.x < walls.left ||
         thing.position.x > walls.right
       ) {
-        removeThing(thing, things)
+        removeThing(state, thing)
       }
     })
   }
@@ -79,10 +78,11 @@ const Game = (
   }
 
   const spawnEnemy = (things: Thing[]) => {
-    const enemy: Thing = Enemy
-    enemy.position.y = enemy.height + randomIntFromInterval(10, 100) * -1
-    enemy.position.x = randomIntFromInterval(0, canvas.width)
+    const enemy: Thing = Enemy()
+    enemy.position.y = enemy.height * -1
+    enemy.position.x = randomIntFromInterval(0, canvas.width - enemy.width)
     enemy.momentum.forces.y = 0.3
+    enemy.momentum.maxForces.y = randomIntFromInterval(0.3, 1)
     things.push(enemy)
   }
 
@@ -90,6 +90,9 @@ const Game = (
     console.log('Starting Game module with state:', state)
     console.log('Starting Game module with images:', images)
     applyInitialPlayerPosition()
+    setTimeout(() => {
+      console.log(state.things)
+    }, 10000)
     tick()
   }
 

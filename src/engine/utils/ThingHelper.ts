@@ -1,4 +1,4 @@
-import { Image, Thing } from '../../types/GameTypes'
+import { GameState, Image, Thing } from '../../types/GameTypes'
 
 let things: Thing[] = []
 let images: Image[] = []
@@ -25,8 +25,8 @@ export const keepThingWithinScreen = (thing: Thing, canvas: HTMLCanvasElement) =
   })
 }
 
-export const removeThing = (thing: Thing, things: Thing[]): void => {
-  things = things.filter((t) => t !== thing)
+export const removeThing = (state: GameState, thing: Thing): void => {
+  state.things = state.things.filter((t) => t !== thing)
 }
 
 const ThingHelper = () => {
