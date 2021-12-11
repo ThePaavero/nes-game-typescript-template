@@ -1,7 +1,7 @@
 import { Image } from '../types/GameTypes'
 
-export default async (images: string[]): Promise<Image[]> => {
-  return Promise.all(
+export default async (images: string[]): Promise<Image[]> =>
+  Promise.all(
     images.map(async (imageName: string): Promise<Image> => {
       const img = document.createElement('img')
       img.src = `/images/${imageName}.png`
@@ -12,4 +12,3 @@ export default async (images: string[]): Promise<Image[]> => {
       }
     })
   )
-}
