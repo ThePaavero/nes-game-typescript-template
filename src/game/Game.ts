@@ -4,7 +4,12 @@ import { getThingById, getThingImage, keepThingWithinScreen } from '../engine/ut
 import Player from './modules/Player'
 import { logOnce } from '../engine/utils/Misc'
 
-const Game = (canvas: HTMLCanvasElement, context: CanvasRenderingContext2D, images: Image[], state: GameState): void => {
+const Game = (
+  canvas: HTMLCanvasElement,
+  context: CanvasRenderingContext2D,
+  images: Image[],
+  state: GameState
+): void => {
   const player: Thing = Player
   state.things.push(player)
 
