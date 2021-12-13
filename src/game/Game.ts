@@ -5,6 +5,7 @@ import Player from './modules/Player'
 import Enemy from './modules/Enemy'
 import { randomIntFromInterval, logOnce } from '../engine/utils/Misc'
 import { killOffScreenThings } from './../engine/utils/ThingHelper'
+import { drawThings } from './../engine/utils/RenderingHelper'
 
 const Game = (
   canvas: HTMLCanvasElement,
@@ -29,16 +30,6 @@ const Game = (
 
   const shouldSpawnEnemy = (): boolean => {
     return randomIntFromInterval(0, 100) === 0
-  }
-
-  const drawThings = (context: CanvasRenderingContext2D, things: Thing[]): void => {
-    things.forEach((thing: Thing) => {
-      const img: CanvasImageSource | null = getThingImage(thing.id)
-      if (!img) {
-        return
-      }
-      context.drawImage(img, thing.position.x, thing.position.y, thing.width, thing.height)
-    })
   }
 
   const updateScreen = (context: CanvasRenderingContext2D): void => {
