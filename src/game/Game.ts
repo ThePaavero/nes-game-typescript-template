@@ -4,6 +4,7 @@ import { getThingById, getThingImage, keepThingWithinScreen, removeThing } from 
 import Player from './modules/Player'
 import Enemy from './modules/Enemy'
 import { randomIntFromInterval, logOnce } from '../engine/utils/Misc'
+import { killOffScreenThings } from './../engine/utils/ThingHelper'
 
 const Game = (
   canvas: HTMLCanvasElement,
@@ -19,31 +20,11 @@ const Game = (
     applyForces(state.things)
     applyInertia(state.things)
     keepThingWithinScreen(player, canvas)
-    killOffScreenThings(state.things, canvas)
+    killOffScreenThings(canvas, state)
 
     if (shouldSpawnEnemy()) {
       spawnEnemy(state.things)
     }
-  }
-
-  const killOffScreenThings = (things: Thing[], canvas: Canvas) => {
-    const floor = canvas.height
-
-    getThingsThatMove(things).forEach((thing: Thing) => {
-      const ceiling = thing.height * -1
-      const walls = {
-        left: 0,
-        right: canvas.width + thing.width,
-      }
-      if (
-        thing.position.y >= floor ||
-        thing.position.y <= ceiling ||
-        thing.position.x < walls.left ||
-        thing.position.x > walls.right
-      ) {
-        removeThing(state, thing)
-      }
-    })
   }
 
   const shouldSpawnEnemy = (): boolean => {

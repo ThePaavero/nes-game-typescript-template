@@ -1,4 +1,5 @@
-import { GameState, Image, Thing } from '../../types/GameTypes'
+import { Canvas, GameState, Image, Thing } from '../../types/GameTypes'
+import { getThingsThatMove } from './MovementHelper'
 
 let things: Thing[] = []
 let images: Image[] = []
@@ -42,6 +43,28 @@ const ThingHelper = () => {
     setThings,
     setImages,
   }
+}
+
+export const killOffScreenThings = (canvas: Canvas, state: GameState): void => {
+  const things = state.things
+  const floor = canvas.height
+
+  getThingsThatMove(things).forEach((thing: Thing) => {
+    const ceiling = thing.height * -1
+    const walls = {
+      left: 0,
+      right: canvas.width + thing.width,
+    }
+    if (
+      thing.position.y >= floor ||
+      thing.position.y <= ceiling ||
+      thing.position.x < walls.left ||
+      thing.position.x > walls.right
+    ) {
+      console.log('Removed thing', thing)
+      removeThing(state, thing)
+    }
+  })
 }
 
 export default ThingHelper()
