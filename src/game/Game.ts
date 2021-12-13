@@ -32,7 +32,7 @@ const Game = (
     getThingsThatMove(things).forEach((thing: Thing) => {
       const ceiling = thing.height * -1
       const walls = {
-        left: thing.width,
+        left: 0,
         right: canvas.width + thing.width,
       }
       if (
