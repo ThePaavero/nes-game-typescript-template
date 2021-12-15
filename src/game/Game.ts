@@ -1,5 +1,5 @@
 import { updateForces, applyForces, applyInertia, getThingsThatMove } from '../engine/utils/MovementHelper'
-import { Canvas, Coordinates, Image, ThingTraits, Forces, Momentum, Thing, GameState } from '../types/GameTypes'
+import { Canvas, Coordinates, Image, Traits, Forces, Momentum, Thing, GameState } from '../types/GameTypes'
 import { getThingById, getThingImage, keepThingWithinScreen, removeThing } from '../engine/utils/ThingHelper'
 import Player from './modules/Player'
 import Enemy from './modules/Enemy'

@@ -36,7 +36,7 @@ export interface Image {
   element: HTMLImageElement
 }
 
-export interface ThingTraits {
+export interface Traits {
   moves: boolean
   doHitChecks: boolean
 }
@@ -59,8 +59,8 @@ export interface Thing {
   width: number | undefined
   height: number | undefined
   position: Coordinates | undefined
-  traits: ThingTraits | undefined
-  momentum: Momentum | undefined
+  traits?: Traits
+  momentum?: Momentum
   mass?: number
 }
 
