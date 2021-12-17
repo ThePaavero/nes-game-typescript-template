@@ -68,23 +68,23 @@ export const killOffScreenThings = (canvas: Canvas, state: GameState): void => {
   })
 }
 
-export const doHitChecks = (things: Thing[], callbackFunction: Function) => {
-  const thingsWithHitTrait = things.filter((t) => t.traits.doHitChecks)
-  thingsWithHitTrait.forEach((thingA: Thing, index: number): void => {
-    thingsWithHitTrait.forEach((thingB: Thing, index: number): void => {
-      if (!thingB || thingA === thingB) {
-        return
-      }
-      if (
-        thingA.position.x < thingB.position.x + thingB.width &&
-        thingA.position.x + thingA.width > thingB.position.x &&
-        thingA.position.y < thingB.position.y + thingB.height &&
-        thingA.position.y + thingA.height > thingB.position.y
-      ) {
-        callbackFunction([thingA, thingB])
-      }
-    })
-  })
+export const doHitChecks = (things: Thing[], callbackFunction: Function, thingTypePair: string[]) => {
+  // const thingsOfInterest = things.filter((t) => t.traits.doHitChecks && thingTypePair.includes(t.id))
+  // thingsOfInterest.forEach((thingA: Thing, index: number): void => {
+  //   thingsOfInterest.forEach((thingB: Thing, index: number): void => {
+  //     if (!thingB || thingA === thingB) {
+  //       return
+  //     }
+  //     if (
+  //       thingA.position.x < thingB.position.x + thingB.width &&
+  //       thingA.position.x + thingA.width > thingB.position.x &&
+  //       thingA.position.y < thingB.position.y + thingB.height &&
+  //       thingA.position.y + thingA.height > thingB.position.y
+  //     ) {
+  //       callbackFunction([thingA, thingB])
+  //     }
+  //   })
+  // })
 }
 
 export default ThingHelper()

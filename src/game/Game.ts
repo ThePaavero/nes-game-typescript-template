@@ -28,7 +28,7 @@ const Game = (
     applyInertia(state.things)
     keepThingWithinScreen(player, canvas)
     killOffScreenThings(canvas, state)
-    doHitChecks(state.things, onThingsHit)
+    doHitChecks(state.things, onThingsHit, ['player', 'enemy'])
 
     if (shouldSpawnEnemy()) {
       spawnEnemy(state.things)
@@ -36,9 +36,6 @@ const Game = (
   }
 
   const onThingsHit = (thingPair: Thing[]) => {
-    if (!thingPair.find((t) => t.id === 'player')) {
-      return
-    }
     console.log('HIT', thingPair)
   }
 
