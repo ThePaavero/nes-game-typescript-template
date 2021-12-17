@@ -19,13 +19,13 @@ const PlayerProjectile = (): Projectile => {
     momentum: {
       forces: {
         x: 0,
-        y: -1,
+        y: -3.5,
       },
       maxForces: {
         x: 1,
         y: -1,
       },
-      acceleration: 1,
+      acceleration: 10,
       inertia: 0,
     },
     mass: 50,

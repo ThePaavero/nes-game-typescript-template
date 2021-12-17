@@ -34,6 +34,7 @@ export interface Coordinates {
 export interface Image {
   id: string
   element: HTMLImageElement
+  [index: symbol]: string
 }
 
 export interface Traits {
@@ -78,6 +79,7 @@ export interface GameState {
   paused: boolean
   keysDown: string[]
   projectiles: Projectile[]
+  loopingBackgroundPosition: number
 }
 
 declare global {

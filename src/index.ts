@@ -16,6 +16,7 @@ const init = async () => {
     paused: false,
     keysDown: [],
     projectiles: [],
+    loopingBackgroundPosition: 0,
   }
 
   Controls.init(Config.controlKeyMap, state)

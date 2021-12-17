@@ -12,7 +12,9 @@ import Enemy from './modules/Enemy'
 import PlayerProjectile, { fire } from './modules/PlayerProjectile'
 import { randomIntFromInterval, logOnce, buttonIsPressed } from '../engine/utils/Misc'
 import { killOffScreenThings } from './../engine/utils/ThingHelper'
-import { drawThings } from './../engine/utils/RenderingHelper'
+import { drawThings, getImage } from './../engine/utils/RenderingHelper'
+
+const loopingBackgroundHeight = 591
 
 const Game = (
   canvas: HTMLCanvasElement,
@@ -28,6 +30,8 @@ const Game = (
 
     state.projectiles = []
 
+    state.loopingBackgroundPosition = (loopingBackgroundHeight / 2) * -1
+
     return state
   }
 
@@ -42,6 +46,7 @@ const Game = (
     keepThingWithinScreen(player, canvas)
     killOffScreenThings(canvas, state)
     doHitChecks(state.things, onThingsHit)
+    scrollBackground(state)
 
     if (shouldSpawnEnemy()) {
       spawnEnemy(state.things)
@@ -49,6 +54,13 @@ const Game = (
 
     logOnce(player)
     applyPlayerActions(state, player)
+  }
+
+  const scrollBackground = (state: GameState) => {
+    state.loopingBackgroundPosition += 1 // TODO
+    if (state.loopingBackgroundPosition >= loopingBackgroundHeight - loopingBackgroundHeight) {
+      state.loopingBackgroundPosition = (loopingBackgroundHeight / 2) * -1
+    }
   }
 
   const applyPlayerActions = (state: GameState, player: PlayerType) => {
@@ -81,8 +93,13 @@ const Game = (
     return randomIntFromInterval(0, 100) === 0
   }
 
+  const drawBackground = (context: CanvasRenderingContext2D, state: GameState): void => {
+    context.drawImage(getImage(images, 'scrollingBackground').element, 0, state.loopingBackgroundPosition)
+  }
+
   const updateScreen = (context: CanvasRenderingContext2D): void => {
     context.clearRect(0, 0, canvas.width, canvas.height)
+    drawBackground(context, state)
     drawThings(context, state.things)
   }
 
