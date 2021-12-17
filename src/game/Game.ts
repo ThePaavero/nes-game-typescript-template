@@ -35,7 +35,7 @@ const Game = (
     }
   }
 
-  const onThingsHit = (thingPair: Thing[]) => {
+  const onThingsHit = (thingPair: [Thing, Thing]) => {
     if (!thingPair.find((t) => t.id === 'player')) {
       return
     }
