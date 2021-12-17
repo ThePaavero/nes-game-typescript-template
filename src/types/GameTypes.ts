@@ -70,7 +70,7 @@ export interface PlayerType extends Thing {
 }
 
 export interface Projectile extends Thing {
-  // ...
+  player?: PlayerType
 }
 
 export interface GameState {

@@ -1,12 +1,13 @@
+import { logOnce } from './../../engine/utils/Misc'
 import { getThingById } from './../../engine/utils/ThingHelper'
-import { Thing, GameState, PlayerType } from './../../types/GameTypes'
+import { Thing, GameState, PlayerType, Projectile } from './../../types/GameTypes'
 
-const player = getThingById('player') as PlayerType
-
-const PlayerProjectile = (): Thing => {
+const PlayerProjectile = (): Projectile => {
+  const player = getThingById('player') as PlayerType
   return {
+    player,
     id: 'playerProjectile',
-    width: 2,
+    width: 1,
     height: 3,
     position: {
       x: player.position.x + player.width / 2,
@@ -32,8 +33,8 @@ const PlayerProjectile = (): Thing => {
   }
 }
 
-export const fire = (state: GameState) => {
-  if (!player.canFire) {
+export const fire = (state: GameState, player: PlayerType) => {
+  if (!player || !player.canFire) {
     return
   }
   state.things.push(PlayerProjectile())

@@ -47,12 +47,13 @@ const Game = (
       spawnEnemy(state.things)
     }
 
+    logOnce(player)
     applyPlayerActions(state, player)
   }
 
   const applyPlayerActions = (state: GameState, player: PlayerType) => {
     if (buttonIsPressed('b', state.keysDown)) {
-      fire(state)
+      fire(state, player)
     }
   }
 
