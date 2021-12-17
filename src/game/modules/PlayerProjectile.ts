@@ -20,7 +20,7 @@ const PlayerProjectile = (): Projectile => {
     momentum: {
       forces: {
         x: 0,
-        y: -0.5,
+        y: -1,
       },
       maxForces: {
         x: 1,
@@ -41,7 +41,7 @@ export const fire = (state: GameState, player: PlayerType) => {
   player.canFire = false
   setTimeout(() => {
     player.canFire = true
-  }, 100)
+  }, 150)
 }
 
 export default PlayerProjectile
