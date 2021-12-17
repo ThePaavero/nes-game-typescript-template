@@ -1,4 +1,5 @@
 import { Canvas, GameState, Image, Thing } from '../../types/GameTypes'
+import { logOnce } from './Misc'
 import { getThingsThatMove } from './MovementHelper'
 
 let things: Thing[] = []
@@ -64,6 +65,32 @@ export const killOffScreenThings = (canvas: Canvas, state: GameState): void => {
       console.log('Removed thing', thing)
       removeThing(state, thing)
     }
+  })
+}
+
+export const doHitChecks = (things: Thing[], callbackFunction: Function) => {
+  const thingsWithHitTrait = things.filter((t) => t.traits.doHitChecks)
+  thingsWithHitTrait.forEach((thingA) => {
+    thingsWithHitTrait.forEach((thingB) => {
+      if (thingA === thingB) {
+        return
+      }
+      const ceilingA = thingA.position.y
+      const floorA = thingA.position.y + thingA.height
+      const leftWallA = thingA.position.x
+      const rightWallA = thingA.position.x + thingA.width
+
+      const ceilingB = thingB.position.y
+      const floorB = thingB.position.y + thingB.height
+      const leftWallB = thingB.position.x
+      const rightWallB = thingB.position.x + thingB.width
+
+      if (ceilingA >= ceilingB && floorA <= floorB) {
+        if (leftWallA >= leftWallB && rightWallA <= rightWallB) {
+          logOnce({ thingA, thingB })
+        }
+      }
+    })
   })
 }
 

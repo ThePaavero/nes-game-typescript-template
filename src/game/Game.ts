@@ -1,6 +1,12 @@
 import { updateForces, applyForces, applyInertia, getThingsThatMove } from '../engine/utils/MovementHelper'
 import { Canvas, Coordinates, Image, Traits, Forces, Momentum, Thing, GameState } from '../types/GameTypes'
-import { getThingById, getThingImage, keepThingWithinScreen, removeThing } from '../engine/utils/ThingHelper'
+import {
+  doHitChecks,
+  getThingById,
+  getThingImage,
+  keepThingWithinScreen,
+  removeThing,
+} from '../engine/utils/ThingHelper'
 import Player from './modules/Player'
 import Enemy from './modules/Enemy'
 import { randomIntFromInterval, logOnce } from '../engine/utils/Misc'
@@ -22,10 +28,15 @@ const Game = (
     applyInertia(state.things)
     keepThingWithinScreen(player, canvas)
     killOffScreenThings(canvas, state)
+    doHitChecks(state.things, onThingsHit)
 
     if (shouldSpawnEnemy()) {
       spawnEnemy(state.things)
     }
+  }
+
+  const onThingsHit = (thingPair: Thing[]) => {
+    console.log('HIT', thingPair)
   }
 
   const shouldSpawnEnemy = (): boolean => {
