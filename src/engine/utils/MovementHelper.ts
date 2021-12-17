@@ -1,9 +1,8 @@
-import { Coordinates, Thing } from '../../types/GameTypes'
+import { Thing } from '../../types/GameTypes'
 import { buttonIsPressed } from './Misc'
 import { getThingById } from './ThingHelper'
 
 export const round = (number: number): number => {
-  // return parseFloat(number.toFixed(1))
   return parseFloat(number.toFixed(2))
 }
 

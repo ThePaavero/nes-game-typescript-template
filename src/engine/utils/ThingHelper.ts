@@ -1,5 +1,4 @@
 import { Canvas, GameState, Image, Thing } from '../../types/GameTypes'
-import { logOnce } from './Misc'
 import { getThingsThatMove } from './MovementHelper'
 
 let things: Thing[] = []
