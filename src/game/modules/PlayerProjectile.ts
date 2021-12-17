@@ -1,6 +1,5 @@
-import { logOnce } from './../../engine/utils/Misc'
 import { getThingById } from './../../engine/utils/ThingHelper'
-import { Thing, GameState, PlayerType, Projectile } from './../../types/GameTypes'
+import { GameState, PlayerType, Projectile } from './../../types/GameTypes'
 
 const PlayerProjectile = (): Projectile => {
   const player = getThingById('player') as PlayerType
@@ -11,7 +10,7 @@ const PlayerProjectile = (): Projectile => {
     height: 3,
     position: {
       x: player.position.x + player.width / 2,
-      y: player.position.y,
+      y: player.position.y - 3,
     },
     traits: {
       moves: true,

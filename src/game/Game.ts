@@ -57,11 +57,24 @@ const Game = (
     }
   }
 
+  const isInTuple = (thingPair: [Thing, Thing], thingId: string) => {
+    return !!thingPair.find((t) => t.id === thingId)
+  }
+
   const onThingsHit = (thingPair: [Thing, Thing]) => {
-    if (!thingPair.find((t) => t.id === 'player')) {
-      return
+    if (isInTuple(thingPair, 'player')) {
+      if (!isInTuple(thingPair, 'playerProjectile')) {
+        // Player hit something other than his own projectile.
+      }
+      if (isInTuple(thingPair, 'playerProjectile')) {
+        // Lol, player ran into his own projectile.
+        console.log(':D')
+      }
+      if (isInTuple(thingPair, 'enemy')) {
+        // Collision with enemy.
+        console.log('HIT ENEMY')
+      }
     }
-    // console.log('HIT', thingPair)
   }
 
   const shouldSpawnEnemy = (): boolean => {
