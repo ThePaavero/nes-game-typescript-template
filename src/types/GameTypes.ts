@@ -64,6 +64,11 @@ export interface Thing {
   mass?: number
 }
 
+export interface PlayerType extends Thing {
+  canFire?: boolean
+  firing?: boolean
+}
+
 export interface GameState {
   things: Thing[]
   paused: boolean

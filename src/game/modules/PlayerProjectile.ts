@@ -1,10 +1,10 @@
-import { PlayerType } from './../../types/GameTypes'
+import { Thing } from '../../types/GameTypes'
 
-const Player = (): PlayerType => {
+const PlayerProjectile = (): Thing => {
   return {
-    id: 'player',
-    width: 23,
-    height: 26,
+    id: 'playerProjectile',
+    width: 1,
+    height: 3,
     position: {
       x: 0,
       y: 0,
@@ -22,11 +22,11 @@ const Player = (): PlayerType => {
         x: 1,
         y: 1,
       },
-      acceleration: 0.15,
-      inertia: 0.08,
+      acceleration: 1,
+      inertia: 0,
     },
     mass: 50,
   }
 }
 
-export default Player
+export default PlayerProjectile

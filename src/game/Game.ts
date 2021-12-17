@@ -1,5 +1,5 @@
 import { updateForces, applyForces, applyInertia, getThingsThatMove } from '../engine/utils/MovementHelper'
-import { Canvas, Coordinates, Image, Traits, Forces, Momentum, Thing, GameState } from '../types/GameTypes'
+import { Canvas, Coordinates, Image, Traits, Forces, Momentum, Thing, GameState, PlayerType } from '../types/GameTypes'
 import {
   doHitChecks,
   getThingById,
@@ -9,6 +9,7 @@ import {
 } from '../engine/utils/ThingHelper'
 import Player from './modules/Player'
 import Enemy from './modules/Enemy'
+import PlayerProjectile from './modules/PlayerProjectile'
 import { randomIntFromInterval, logOnce } from '../engine/utils/Misc'
 import { killOffScreenThings } from './../engine/utils/ThingHelper'
 import { drawThings } from './../engine/utils/RenderingHelper'
@@ -19,7 +20,17 @@ const Game = (
   images: Image[],
   state: GameState
 ): void => {
-  const player: Thing = Player
+  const player: PlayerType = Player()
+
+  const appendGameState = (state: GameState) => {
+    player.canFire = true
+    player.firing = false
+
+    return state
+  }
+
+  state = appendGameState(state)
+
   state.things.push(player)
 
   const updateState = (state: GameState): void => {
@@ -39,7 +50,7 @@ const Game = (
     if (!thingPair.find((t) => t.id === 'player')) {
       return
     }
-    console.log('HIT', thingPair)
+    // console.log('HIT', thingPair)
   }
 
   const shouldSpawnEnemy = (): boolean => {
