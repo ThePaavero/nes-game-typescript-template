@@ -5,7 +5,7 @@ export default {
   width: 256,
   height: 240,
   fps: 60,
-  scanLines: false,
+  scanLines: true,
   controlKeyMap: {
     up: ['w', 'arrowup'],
     down: ['s', 'arrowdown'],
