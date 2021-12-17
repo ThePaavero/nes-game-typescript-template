@@ -70,27 +70,19 @@ export const killOffScreenThings = (canvas: Canvas, state: GameState): void => {
 
 export const doHitChecks = (things: Thing[], callbackFunction: Function) => {
   const thingsWithHitTrait = things.filter((t) => t.traits.doHitChecks)
-  thingsWithHitTrait.forEach((thingA) => {
-    thingsWithHitTrait.forEach((thingB) => {
-      if (thingA === thingB) {
-        return
-      }
-      const ceilingA = thingA.position.y
-      const floorA = thingA.position.y + thingA.height
-      const leftWallA = thingA.position.x
-      const rightWallA = thingA.position.x + thingA.width
-
-      const ceilingB = thingB.position.y
-      const floorB = thingB.position.y + thingB.height
-      const leftWallB = thingB.position.x
-      const rightWallB = thingB.position.x + thingB.width
-
-      if (ceilingA >= ceilingB && floorA <= floorB) {
-        if (leftWallA >= leftWallB && rightWallA <= rightWallB) {
-          logOnce({ thingA, thingB })
-        }
-      }
-    })
+  thingsWithHitTrait.forEach((thingA: Thing, index: number): void => {
+    const thingB = thingsWithHitTrait[index + 1]
+    if (!thingB || thingA === thingB) {
+      return
+    }
+    if (
+      thingA.position.x < thingB.position.x + thingB.width &&
+      thingA.position.x + thingA.width > thingB.position.x &&
+      thingA.position.y < thingB.position.y + thingB.height &&
+      thingA.position.y + thingA.height > thingB.position.y
+    ) {
+      callbackFunction([thingA, thingB])
+    }
   })
 }
 
