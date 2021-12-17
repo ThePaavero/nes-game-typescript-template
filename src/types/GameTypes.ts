@@ -69,10 +69,15 @@ export interface PlayerType extends Thing {
   firing?: boolean
 }
 
+export interface Projectile extends Thing {
+  // ...
+}
+
 export interface GameState {
   things: Thing[]
   paused: boolean
   keysDown: string[]
+  projectiles: Projectile[]
 }
 
 declare global {

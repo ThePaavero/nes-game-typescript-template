@@ -9,8 +9,8 @@ import {
 } from '../engine/utils/ThingHelper'
 import Player from './modules/Player'
 import Enemy from './modules/Enemy'
-import PlayerProjectile from './modules/PlayerProjectile'
-import { randomIntFromInterval, logOnce } from '../engine/utils/Misc'
+import PlayerProjectile, { fire } from './modules/PlayerProjectile'
+import { randomIntFromInterval, logOnce, buttonIsPressed } from '../engine/utils/Misc'
 import { killOffScreenThings } from './../engine/utils/ThingHelper'
 import { drawThings } from './../engine/utils/RenderingHelper'
 
@@ -25,6 +25,8 @@ const Game = (
   const appendGameState = (state: GameState) => {
     player.canFire = true
     player.firing = false
+
+    state.projectiles = []
 
     return state
   }
@@ -43,6 +45,14 @@ const Game = (
 
     if (shouldSpawnEnemy()) {
       spawnEnemy(state.things)
+    }
+
+    applyPlayerActions(state, player)
+  }
+
+  const applyPlayerActions = (state: GameState, player: PlayerType) => {
+    if (buttonIsPressed('b', state.keysDown)) {
+      fire(state)
     }
   }
 
