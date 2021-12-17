@@ -1,5 +1,6 @@
 [
   "enemy",
   "player",
-  "playerProjectile"
+  "playerProjectile",
+  "scrollingBackground"
 ]
