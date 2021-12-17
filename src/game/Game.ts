@@ -24,18 +24,17 @@ const Game = (
 ): void => {
   const player: PlayerType = Player()
 
-  const appendGameState = (state: GameState) => {
+  const initializeGameState = (state: GameState) => {
     player.canFire = true
     player.firing = false
 
     state.projectiles = []
-
     state.loopingBackgroundPosition = (loopingBackgroundHeight / 2) * -1
 
     return state
   }
 
-  state = appendGameState(state)
+  state = initializeGameState(state)
 
   state.things.push(player)
 
@@ -58,8 +57,8 @@ const Game = (
 
   const scrollBackground = (state: GameState) => {
     state.loopingBackgroundPosition += 1 // TODO
-    if (state.loopingBackgroundPosition >= loopingBackgroundHeight - loopingBackgroundHeight) {
-      state.loopingBackgroundPosition = (loopingBackgroundHeight / 2) * -1
+    if (state.loopingBackgroundPosition >= 0) {
+      state.loopingBackgroundPosition = (loopingBackgroundHeight / 2) * -1 // TODO: This isn't right.
     }
   }
 
