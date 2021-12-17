@@ -1,15 +1,9 @@
-import { updateForces, applyForces, applyInertia, getThingsThatMove } from '../engine/utils/MovementHelper'
-import { Canvas, Coordinates, Image, Traits, Forces, Momentum, Thing, GameState, PlayerType } from '../types/GameTypes'
-import {
-  doHitChecks,
-  getThingById,
-  getThingImage,
-  keepThingWithinScreen,
-  removeThing,
-} from '../engine/utils/ThingHelper'
+import { updateForces, applyForces, applyInertia } from '../engine/utils/MovementHelper'
+import { Image, Thing, GameState, PlayerType } from '../types/GameTypes'
+import { doHitChecks, keepThingWithinScreen } from '../engine/utils/ThingHelper'
 import Player from './modules/Player'
 import Enemy from './modules/Enemy'
-import PlayerProjectile, { fire } from './modules/PlayerProjectile'
+import { fire } from './modules/PlayerProjectile'
 import { randomIntFromInterval, logOnce, buttonIsPressed } from '../engine/utils/Misc'
 import { killOffScreenThings } from './../engine/utils/ThingHelper'
 import { drawThings, getImage } from './../engine/utils/RenderingHelper'
