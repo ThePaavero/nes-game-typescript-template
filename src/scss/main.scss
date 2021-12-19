@@ -4,10 +4,19 @@
 body {
   background-color: #000;
   color: #fff;
+  font-family: 'NesFont';
 
   * {
     box-sizing: border-box;
   }
+}
+
+@font-face {
+  font-family: 'NesFont';
+  // src: url('./my-font.woff2') format('woff2'), url('./my-font.woff') format('woff');
+  src: url('/public/fonts/PixelEmulatorxq08.ttf');
+  font-weight: 600;
+  font-style: normal;
 }
 
 .game {

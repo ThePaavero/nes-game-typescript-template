@@ -8,7 +8,30 @@ import { Thing, GameState } from './types/GameTypes'
 import { setUpDebugger } from './engine/utils/StateDebugger'
 import './scss/main.scss'
 
+const renderLoadingScreen = (context: CanvasRenderingContext2D): void => {
+  context.textBaseline = 'top'
+  context.fillStyle = 'white'
+  context.font = '23px PixelEmulatorxq08'
+  context.fillText('Loading images...', 50, 60)
+}
+
 const init = async () => {
+  console.log('before font load')
+  const nesFont = await new FontFace('PixelEmulatorxq08', 'url("fonts/PixelEmulatorxq08.ttf")').load()
+  const doc = document as any
+  doc.fonts.add(nesFont)
+  console.log('after font load')
+
+  const canvas = document.createElement('canvas')
+  canvas.width = Config.width
+  canvas.height = Config.height
+  document.querySelector('.game').appendChild(canvas)
+
+  const context = canvas.getContext('2d')
+  context.imageSmoothingEnabled = false
+
+  renderLoadingScreen(context)
+
   const images = await preloadImages(imageNames)
   const things: Thing[] = []
   const state: GameState = {
@@ -20,14 +43,6 @@ const init = async () => {
   }
 
   Controls.init(Config.controlKeyMap, state)
-
-  const canvas = document.createElement('canvas')
-  canvas.width = Config.width
-  canvas.height = Config.height
-  document.querySelector('.game').appendChild(canvas)
-
-  const context = canvas.getContext('2d')
-  context.imageSmoothingEnabled = false
 
   ThingHelper.setThings(things)
   ThingHelper.setImages(images)
