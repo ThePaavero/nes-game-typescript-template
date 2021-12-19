@@ -71,6 +71,7 @@ const Game = (
     if (isInTuple(thingPair, 'player')) {
       if (!isInTuple(thingPair, 'playerProjectile')) {
         // Player hit something other than his own projectile.
+        // TODO: Power-ups, weapon items, etc.
       }
       if (isInTuple(thingPair, 'playerProjectile')) {
         // Lol, player ran into his own projectile.
