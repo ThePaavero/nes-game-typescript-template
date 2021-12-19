@@ -9,8 +9,8 @@ import { Thing, GameState } from './types/GameTypes'
 import { setUpDebugger } from './engine/utils/StateDebugger'
 import './scss/main.scss'
 
-const renderLoadingScreen = (context: CanvasRenderingContext2D): void => {
-  write(context, 'Loading...', 6, 50, 60)
+const renderLoadingScreen = (context: CanvasRenderingContext2D, gameName: string): void => {
+  write(context, `Loading ' ${gameName} ' . . .`, 10, 10, 10)
 }
 
 const init = async () => {
@@ -28,7 +28,7 @@ const init = async () => {
   const context = canvas.getContext('2d')
   context.imageSmoothingEnabled = false
 
-  renderLoadingScreen(context)
+  renderLoadingScreen(context, Config.name)
 
   const images = await preloadImages(imageNames)
   const things: Thing[] = []

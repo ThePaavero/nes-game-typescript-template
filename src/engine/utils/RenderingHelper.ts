@@ -15,7 +15,7 @@ export const getImage = (images: Image[], id: string): Image => {
   return images.find((i) => i.id === id)
 }
 
-export const preloadFont = async (): Promise<any> => {
+export const preloadFont = async (): Promise<FontFace> => {
   const nesFont = await new FontFace('PixelEmulatorxq08', 'url("fonts/PixelEmulatorxq08.ttf")').load()
   const doc = document as any
   doc.fonts.add(nesFont)
@@ -29,7 +29,7 @@ export const write = (
   x: number,
   y: number,
   color?: string
-) => {
+): void => {
   context.textBaseline = 'top'
   context.fillStyle = color || 'white'
   context.font = `${size}px PixelEmulatorxq08`

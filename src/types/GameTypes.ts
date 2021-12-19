@@ -68,6 +68,7 @@ export interface Thing {
 export interface PlayerType extends Thing {
   canFire?: boolean
   firing?: boolean
+  points?: number
 }
 
 export interface Projectile extends Thing {

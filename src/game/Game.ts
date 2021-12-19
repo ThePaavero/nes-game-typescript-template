@@ -6,7 +6,7 @@ import Enemy from './modules/Enemy'
 import { fire } from './modules/PlayerProjectile'
 import { randomIntFromInterval, logOnce, buttonIsPressed } from '../engine/utils/Misc'
 import { killOffScreenThings } from './../engine/utils/ThingHelper'
-import { drawThings, getImage } from './../engine/utils/RenderingHelper'
+import { drawThings, getImage, write } from './../engine/utils/RenderingHelper'
 
 const loopingBackgroundHeight = 591
 
@@ -21,6 +21,7 @@ const Game = (
   const initializeGameState = (state: GameState) => {
     player.canFire = true
     player.firing = false
+    player.points = 0
 
     state.projectiles = []
     state.loopingBackgroundPosition = (loopingBackgroundHeight / 2) * -1
@@ -90,10 +91,15 @@ const Game = (
     context.drawImage(getImage(images, 'scrollingBackground').element, 0, state.loopingBackgroundPosition)
   }
 
+  const drawStatusBar = (context: CanvasRenderingContext2D, points: number) => {
+    write(context, `POINTS: ${points}`, 8, 3, 3)
+  }
+
   const updateScreen = (context: CanvasRenderingContext2D): void => {
     context.clearRect(0, 0, canvas.width, canvas.height)
     drawBackground(context, state)
     drawThings(context, state.things)
+    drawStatusBar(context, player.points)
   }
 
   const tick = (): void => {
