@@ -1,3 +1,4 @@
+import { preloadFont, write } from './engine/utils/RenderingHelper'
 import Config from './../GameConfig'
 import Controls from './engine/Controls'
 import ThingHelper from './engine/utils/ThingHelper'
@@ -9,18 +10,11 @@ import { setUpDebugger } from './engine/utils/StateDebugger'
 import './scss/main.scss'
 
 const renderLoadingScreen = (context: CanvasRenderingContext2D): void => {
-  context.textBaseline = 'top'
-  context.fillStyle = 'white'
-  context.font = '23px PixelEmulatorxq08'
-  context.fillText('Loading images...', 50, 60)
+  write(context, 'Loading...', 6, 50, 60)
 }
 
 const init = async () => {
-  console.log('before font load')
-  const nesFont = await new FontFace('PixelEmulatorxq08', 'url("fonts/PixelEmulatorxq08.ttf")').load()
-  const doc = document as any
-  doc.fonts.add(nesFont)
-  console.log('after font load')
+  await preloadFont()
 
   const canvas = document.createElement('canvas')
   canvas.width = Config.width

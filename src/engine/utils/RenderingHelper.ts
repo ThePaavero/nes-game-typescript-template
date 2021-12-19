@@ -14,3 +14,24 @@ export const drawThings = (context: CanvasRenderingContext2D, things: Thing[]): 
 export const getImage = (images: Image[], id: string): Image => {
   return images.find((i) => i.id === id)
 }
+
+export const preloadFont = async (): Promise<any> => {
+  const nesFont = await new FontFace('PixelEmulatorxq08', 'url("fonts/PixelEmulatorxq08.ttf")').load()
+  const doc = document as any
+  doc.fonts.add(nesFont)
+  return nesFont
+}
+
+export const write = (
+  context: CanvasRenderingContext2D,
+  text: string,
+  size: number,
+  x: number,
+  y: number,
+  color?: string
+) => {
+  context.textBaseline = 'top'
+  context.fillStyle = color || 'white'
+  context.font = `${size}px PixelEmulatorxq08`
+  context.fillText(text, x, y)
+}
