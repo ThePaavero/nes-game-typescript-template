@@ -17,9 +17,13 @@ const init = async () => {
   await preloadFont()
 
   const canvas = document.createElement('canvas')
+  const gameDiv = document.querySelector('.game')
+
   canvas.width = Config.width
   canvas.height = Config.height
-  document.querySelector('.game').appendChild(canvas)
+
+  gameDiv.innerHTML = ''
+  gameDiv.appendChild(canvas)
 
   const context = canvas.getContext('2d')
   context.imageSmoothingEnabled = false
