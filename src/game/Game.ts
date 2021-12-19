@@ -1,6 +1,6 @@
 import { updateForces, applyForces, applyInertia } from '../engine/utils/MovementHelper'
 import { Image, Thing, GameState, PlayerType } from '../types/GameTypes'
-import { doHitChecks, keepThingWithinScreen } from '../engine/utils/ThingHelper'
+import { doHitChecks, keepThingWithinScreen, removeThing } from '../engine/utils/ThingHelper'
 import Player from './modules/Player'
 import Enemy from './modules/Enemy'
 import { fire } from './modules/PlayerProjectile'
@@ -80,6 +80,11 @@ const Game = (
         // Collision with enemy.
         console.log('HIT ENEMY')
       }
+    } else if (isInTuple(thingPair, 'playerProjectile') && isInTuple(thingPair, 'enemy')) {
+      // Player projectile hit an enemy.
+      const enemy = thingPair.find((t) => t.id === 'enemy')
+      // TODO: Create an explosion or something. Debris flying and shit.
+      removeThing(state, enemy)
     }
   }
 
