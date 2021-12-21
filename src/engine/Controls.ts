@@ -28,6 +28,7 @@ const Controls = () => {
       console.log('A')
     }
 
+    // TODO: This is a second requestAnimationFrame call. We need to move it to one single ticker.
     window.requestAnimationFrame(() => {
       listenToGamepad(gamepad)
     })
