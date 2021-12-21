@@ -1,5 +1,3 @@
-// declare module 'html5-gamepad'
-
 import { GameState, ControlKeyMap } from '../types/GameTypes'
 import gamepads from 'html5-gamepad'
 
@@ -25,6 +23,12 @@ const Controls = () => {
     }
   }
 
+  const initializeGamepad = (gamepad: any) => {
+    if (gamepad.button('a')) {
+      console.log('A')
+    }
+  }
+
   const init = (keyMap: ControlKeyMap, state: GameState): void => {
     // Keyboard.
     const eventTypes = ['up', 'down']
@@ -42,7 +46,13 @@ const Controls = () => {
     })
 
     // Gamepad.
-    // ......
+    const gamepadPollerId = setInterval(() => {
+      console.log('.')
+      if (gamepads.length) {
+        clearInterval(gamepadPollerId)
+        initializeGamepad(gamepads[0])
+      }
+    }, 500)
   }
 
   return { init }
