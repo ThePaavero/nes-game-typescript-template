@@ -23,10 +23,14 @@ const Controls = () => {
     }
   }
 
-  const initializeGamepad = (gamepad: any) => {
+  const listenToGamepad = (gamepad: any) => {
     if (gamepad.button('a')) {
       console.log('A')
     }
+
+    window.requestAnimationFrame(() => {
+      listenToGamepad(gamepad)
+    })
   }
 
   const init = (keyMap: ControlKeyMap, state: GameState): void => {
@@ -50,7 +54,7 @@ const Controls = () => {
       console.log('.')
       if (gamepads.length) {
         clearInterval(gamepadPollerId)
-        initializeGamepad(gamepads[0])
+        listenToGamepad(gamepads[0])
       }
     }, 500)
   }
