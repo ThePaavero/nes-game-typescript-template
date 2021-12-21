@@ -1,4 +1,7 @@
+// declare module 'html5-gamepad'
+
 import { GameState, ControlKeyMap } from '../types/GameTypes'
+import gamepads from 'html5-gamepad'
 
 const Controls = () => {
   const onNesButtonDown = (state: GameState, nesButton: string): void => {
@@ -23,6 +26,7 @@ const Controls = () => {
   }
 
   const init = (keyMap: ControlKeyMap, state: GameState): void => {
+    // Keyboard.
     const eventTypes = ['up', 'down']
     eventTypes.forEach((eventType) => {
       document.addEventListener(`key${eventType}`, (e: KeyboardEvent) => {
@@ -36,6 +40,9 @@ const Controls = () => {
         })
       })
     })
+
+    // Gamepad.
+    // ......
   }
 
   return { init }

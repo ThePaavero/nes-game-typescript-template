@@ -61,7 +61,6 @@ export const killOffScreenThings = (canvas: Canvas, state: GameState): void => {
       thing.position.x < walls.left ||
       thing.position.x > walls.right
     ) {
-      console.log('Removed thing', thing)
       removeThing(state, thing)
     }
   })

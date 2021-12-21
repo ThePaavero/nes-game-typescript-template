@@ -5,9 +5,10 @@
     "resolveJsonModule": true,
     "module": "es6",
     "target": "es5",
-    "allowJs": false,
+    "allowJs": true,
     "noImplicitAny": true,
     "skipLibCheck": true
   },
-  "files": ["src/index.ts"]
+  "files": ["src/index.ts"],
+  "include": ["gamepad.d.ts"]
 }
