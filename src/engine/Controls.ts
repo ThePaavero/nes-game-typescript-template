@@ -1,17 +1,5 @@
-import { GameState, ControlKeyMap } from '../types/GameTypes'
+import { GameState, ControlKeyMap, XboxControlKeyMap } from '../types/GameTypes'
 import gamepads from 'html5-gamepad'
-
-interface XboxControlKeyMap {
-  'dpad up': string
-  'dpad down': string
-  'dpad left': string
-  'dpad right': string
-  back: string
-  start: string
-  b: string
-  a: string
-  [index: string]: string
-}
 
 const xboxMap: XboxControlKeyMap = {
   'dpad up': 'up',

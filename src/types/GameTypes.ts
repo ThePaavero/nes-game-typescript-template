@@ -20,6 +20,18 @@ export interface ControlKeyMap {
   [index: string]: string[]
 }
 
+export interface XboxControlKeyMap {
+  'dpad up': string
+  'dpad down': string
+  'dpad left': string
+  'dpad right': string
+  back: string
+  start: string
+  b: string
+  a: string
+  [index: string]: string
+}
+
 export interface Canvas {
   width: number
   height: number

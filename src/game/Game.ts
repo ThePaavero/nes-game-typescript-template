@@ -4,7 +4,7 @@ import { doHitChecks, keepThingWithinScreen, removeThing } from '../engine/utils
 import Player from './modules/Player'
 import Enemy from './modules/Enemy'
 import { fire } from './modules/PlayerProjectile'
-import { randomIntFromInterval, logOnce, buttonIsPressed } from '../engine/utils/Misc'
+import { randomIntFromInterval, buttonIsPressed } from '../engine/utils/Misc'
 import { killOffScreenThings } from './../engine/utils/ThingHelper'
 import { drawThings, getImage, write } from './../engine/utils/RenderingHelper'
 
@@ -45,7 +45,7 @@ const Game = (
     if (shouldSpawnEnemy()) {
       spawnEnemy(state.things)
     }
-    
+
     applyPlayerActions(state, player)
   }
 
