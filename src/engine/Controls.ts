@@ -52,12 +52,14 @@ const Controls = () => {
     const gamepadButtons: string[] = Object.keys(gamepad.mapping.buttons)
 
     gamepadButtons.forEach((buttonName: string) => {
+      const nesControllerButton = xboxMap[buttonName]
+      // console.log(nesControllerButton)
       if (gamepad.button(buttonName)) {
-        const nesControllerButton = xboxMap[buttonName]
-        console.log(nesControllerButton)
         if (nesControllerButton) {
           processButtonEvent('down', state, nesControllerButton)
         }
+      } else if (state.keysDown.includes(nesControllerButton)) {
+        state.keysDown = state.keysDown.filter((k: string) => k !== nesControllerButton)
       }
     })
 
