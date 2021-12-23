@@ -25,10 +25,23 @@ const Controls = () => {
   }
 
   const listenToGamepad = (gamepad: any, keyMap: ControlKeyMap, state: GameState): void => {
-    const keys: string[] = Object.keys(gamepad.mapping.buttons)
-    keys.forEach((buttonName: string) => {
+    const nesButtons = Object.keys(keyMap)
+    const gamepadButtons: string[] = Object.keys(gamepad.mapping.buttons)
+    const xboxMap = {
+      up: 'dpad up',
+      down: 'dpad down',
+      left: 'dpad left',
+      right: 'dpad right',
+      select: 'back',
+      start: 'start',
+      b: 'b',
+      a: 'a',
+    }
+    gamepadButtons.forEach((buttonName: string) => {
       if (gamepad.button(buttonName)) {
-        console.log(`Gamepad button is pressed: "${buttonName}"`)
+        console.log(keyMap)
+        console.log(nesButtons)
+        // processButtonEvent('down', state, nesControllerButton)
       }
     })
 
