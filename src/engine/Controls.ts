@@ -1,3 +1,4 @@
+import { logOnce } from './utils/Misc'
 import { GameState, ControlKeyMap } from '../types/GameTypes'
 import gamepads from 'html5-gamepad'
 
@@ -23,14 +24,13 @@ const Controls = () => {
     }
   }
 
-  const listenToGamepad = (gamepad: any) => {
-    if (gamepad.button('a')) {
-      console.log('A')
-    }
-
-    // TODO: This is a second requestAnimationFrame call. We need to move it to one single ticker.
-    window.requestAnimationFrame(() => {
-      listenToGamepad(gamepad)
+  const listenToGamepad = (gamepad: any, keyMap: ControlKeyMap, state: GameState): void => {
+    const keys: string[] = Object.keys(gamepad.mapping.buttons)
+    keys.forEach((buttonName: string) => {
+      console.log(`Setting listener for "${buttonName}"`)
+      if (gamepad && gamepad.buttonIsPressed(buttonName)) {
+        console.log(`Gamepad button is pressed: "${buttonName}"`)
+      }
     })
   }
 
@@ -52,10 +52,9 @@ const Controls = () => {
 
     // Gamepad.
     const gamepadPollerId = setInterval(() => {
-      console.log('.')
       if (gamepads.length) {
         clearInterval(gamepadPollerId)
-        listenToGamepad(gamepads[0])
+        listenToGamepad(gamepads[0], keyMap, state)
       }
     }, 500)
   }

@@ -45,8 +45,7 @@ const Game = (
     if (shouldSpawnEnemy()) {
       spawnEnemy(state.things)
     }
-
-    logOnce(player)
+    
     applyPlayerActions(state, player)
   }
 
