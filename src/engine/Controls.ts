@@ -27,10 +27,13 @@ const Controls = () => {
   const listenToGamepad = (gamepad: any, keyMap: ControlKeyMap, state: GameState): void => {
     const keys: string[] = Object.keys(gamepad.mapping.buttons)
     keys.forEach((buttonName: string) => {
-      console.log(`Setting listener for "${buttonName}"`)
-      if (gamepad && gamepad.buttonIsPressed(buttonName)) {
+      if (gamepad.button(buttonName)) {
         console.log(`Gamepad button is pressed: "${buttonName}"`)
       }
+    })
+
+    window.requestAnimationFrame(() => {
+      listenToGamepad(gamepad, keyMap, state)
     })
   }
 
