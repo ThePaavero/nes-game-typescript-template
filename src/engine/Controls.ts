@@ -2,6 +2,29 @@ import { logOnce } from './utils/Misc'
 import { GameState, ControlKeyMap } from '../types/GameTypes'
 import gamepads from 'html5-gamepad'
 
+interface XboxControlKeyMap {
+  up: string
+  down: string
+  left: string
+  right: string
+  select: string
+  start: string
+  b: string
+  a: string
+  [index: string]: string
+}
+
+const xboxMap: XboxControlKeyMap = {
+  up: 'dpad up',
+  down: 'dpad down',
+  left: 'dpad left',
+  right: 'dpad right',
+  select: 'back',
+  start: 'start',
+  b: 'b',
+  a: 'a',
+}
+
 const Controls = () => {
   const onNesButtonDown = (state: GameState, nesButton: string): void => {
     if (!state.keysDown.includes(nesButton)) {
@@ -27,21 +50,14 @@ const Controls = () => {
   const listenToGamepad = (gamepad: any, keyMap: ControlKeyMap, state: GameState): void => {
     const nesButtons = Object.keys(keyMap)
     const gamepadButtons: string[] = Object.keys(gamepad.mapping.buttons)
-    const xboxMap = {
-      up: 'dpad up',
-      down: 'dpad down',
-      left: 'dpad left',
-      right: 'dpad right',
-      select: 'back',
-      start: 'start',
-      b: 'b',
-      a: 'a',
-    }
+
     gamepadButtons.forEach((buttonName: string) => {
       if (gamepad.button(buttonName)) {
-        console.log(keyMap)
-        console.log(nesButtons)
-        // processButtonEvent('down', state, nesControllerButton)
+        const nesControllerButton = xboxMap[buttonName]
+        console.log(nesControllerButton)
+        if (nesControllerButton) {
+          processButtonEvent('down', state, nesControllerButton)
+        }
       }
     })
 
