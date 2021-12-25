@@ -18,8 +18,8 @@ export const randomIntFromInterval = (min: number, max: number): number => {
 
 export const playSound = (soundName: string) => {
   const audioElement: HTMLAudioElement = document.querySelector(`.audio-${soundName}`)
-  console.log(audioElement)
   if (!audioElement) {
+    console.warn(`Could not load audio element by name "${soundName}"`)
     return
   }
   audioElement.play()
