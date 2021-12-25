@@ -15,3 +15,12 @@ export const buttonIsPressed = (slug: string, keysDown: string[]): boolean => {
 export const randomIntFromInterval = (min: number, max: number): number => {
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
+
+export const playSound = (soundName: string) => {
+  const audioElement: HTMLAudioElement = document.querySelector(`.audio-${soundName}`)
+  console.log(audioElement)
+  if (!audioElement) {
+    return
+  }
+  audioElement.play()
+}

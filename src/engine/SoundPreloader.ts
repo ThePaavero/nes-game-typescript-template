@@ -18,8 +18,10 @@ export default async (sounds: string[], ext: string): Promise<Sound[]> => {
     sounds.map(async (soundName: string): Promise<Sound> => {
       const soundElement = document.createElement('audio')
       soundElement.src = `/sounds/${soundName}.${ext}`
+      soundElement.classList.add(`audio-${soundName}`)
       // TODO: Well this sucks. The main function is fucked for now.
       // await preloadSound(sound, sounds.length)
+      document.body.appendChild(soundElement)
       return {
         id: soundName,
         element: soundElement,

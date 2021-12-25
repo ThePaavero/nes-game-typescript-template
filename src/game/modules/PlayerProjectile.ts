@@ -1,3 +1,4 @@
+import { playSound } from '../../engine/utils/Misc'
 import { getThingById } from './../../engine/utils/ThingHelper'
 import { GameState, PlayerType, Projectile } from './../../types/GameTypes'
 
@@ -36,6 +37,7 @@ export const fire = (state: GameState, player: PlayerType) => {
   if (!player || !player.canFire) {
     return
   }
+  playSound('pew')
   state.things.push(PlayerProjectile())
   player.canFire = false
   setTimeout(() => {
