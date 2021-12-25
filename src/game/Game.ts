@@ -132,6 +132,7 @@ const Game = (
   const startGame = (): void => {
     console.log('Starting Game module with state:', state)
     console.log('Starting Game module with images:', images)
+    console.log('Starting Game module with sounds:', sounds)
     applyInitialPlayerPosition()
     tick()
   }
