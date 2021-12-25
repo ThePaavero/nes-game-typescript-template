@@ -1,4 +1,5 @@
-import { Thing } from './../../types/GameTypes'
+import { playSound } from '../../engine/utils/Misc'
+import { GameState, Thing } from './../../types/GameTypes'
 
 const Enemy = (): Thing => {
   return {
@@ -27,6 +28,11 @@ const Enemy = (): Thing => {
     },
     mass: 50,
   }
+}
+
+export const enemyExplode = (state: GameState, enemy: Thing) => {
+  playSound('explosion')
+  // TODO: Animations, etc.
 }
 
 export default Enemy

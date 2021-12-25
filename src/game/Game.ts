@@ -2,7 +2,7 @@ import { updateForces, applyForces, applyInertia } from '../engine/utils/Movemen
 import { Image, Sound, Thing, GameState, PlayerType } from '../types/GameTypes'
 import { doHitChecks, keepThingWithinScreen, removeThing } from '../engine/utils/ThingHelper'
 import Player from './modules/Player'
-import Enemy from './modules/Enemy'
+import Enemy, { enemyExplode } from './modules/Enemy'
 import { fire } from './modules/PlayerProjectile'
 import { randomIntFromInterval, buttonIsPressed } from '../engine/utils/Misc'
 import { killOffScreenThings } from './../engine/utils/ThingHelper'
@@ -84,7 +84,7 @@ const Game = (
     } else if (isInTuple(thingPair, 'playerProjectile') && isInTuple(thingPair, 'enemy')) {
       // Player projectile hit an enemy.
       const enemy = thingPair.find((t) => t.id === 'enemy')
-      // TODO: Create an explosion or something. Debris flying and shit.
+      enemyExplode(state, enemy)
       removeThing(state, enemy)
     }
   }
