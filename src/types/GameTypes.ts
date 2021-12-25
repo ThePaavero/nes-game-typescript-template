@@ -3,6 +3,7 @@ export interface GameConfig {
   width: number
   height: number
   fps: number
+  audioExt: string
   scanLines: boolean
   controlKeyMap: ControlKeyMap
   useDebugger: boolean
@@ -46,6 +47,12 @@ export interface Coordinates {
 export interface Image {
   id: string
   element: HTMLImageElement
+  [index: symbol]: string
+}
+
+export interface Sound {
+  id: string
+  element: HTMLAudioElement
   [index: symbol]: string
 }
 

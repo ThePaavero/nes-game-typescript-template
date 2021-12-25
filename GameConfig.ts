@@ -6,6 +6,7 @@ export default {
   height: 240,
   fps: 60,
   scanLines: true,
+  audioExt: 'ogg',
   controlKeyMap: {
     up: ['w', 'arrowup'],
     down: ['s', 'arrowdown'],

@@ -6,6 +6,7 @@ import Game from './game/Game'
 import imageNames from './../images.json'
 import soundNames from './../sounds.json'
 import preloadImages from './engine/ImagePreloader'
+import preloadSounds from './engine/SoundPreloader'
 import { Thing, GameState } from './types/GameTypes'
 import { setUpDebugger } from './engine/utils/StateDebugger'
 import './scss/main.scss'
@@ -32,7 +33,7 @@ const init = async () => {
   renderLoadingScreen(context, Config.name)
 
   const images = await preloadImages(imageNames)
-  const sounds = await preloadSounds(soundNames)
+  const sounds = await preloadSounds(soundNames, Config.audioExt)
   const things: Thing[] = []
   const state: GameState = {
     things,
@@ -55,7 +56,7 @@ const init = async () => {
     document.querySelector('.game').classList.remove('scanlines')
   }
 
-  Game(canvas, context, images, state)
+  Game(canvas, context, images, sounds, state)
 }
 
 init()

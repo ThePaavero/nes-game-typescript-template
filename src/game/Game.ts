@@ -1,5 +1,5 @@
 import { updateForces, applyForces, applyInertia } from '../engine/utils/MovementHelper'
-import { Image, Thing, GameState, PlayerType } from '../types/GameTypes'
+import { Image, Sound, Thing, GameState, PlayerType } from '../types/GameTypes'
 import { doHitChecks, keepThingWithinScreen, removeThing } from '../engine/utils/ThingHelper'
 import Player from './modules/Player'
 import Enemy from './modules/Enemy'
@@ -14,6 +14,7 @@ const Game = (
   canvas: HTMLCanvasElement,
   context: CanvasRenderingContext2D,
   images: Image[],
+  sounds: Sound[],
   state: GameState
 ): void => {
   const player: PlayerType = Player()
