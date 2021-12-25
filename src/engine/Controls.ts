@@ -79,6 +79,11 @@ const Controls = () => {
     const gamepadPollerId = setInterval(() => {
       if (gamepads.length) {
         clearInterval(gamepadPollerId)
+        // TODO: Just noticed my own HOTAS gets registered here, so a temporary hack to avoid errors.
+        if (gamepads[0].gamepad.id.toString().toLowerCase().includes('throttle')) {
+          console.log('HOTAS...')
+          return
+        }
         listenToGamepad(gamepads[0], keyMap, state)
       }
     }, 500)
