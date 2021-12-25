@@ -2,7 +2,7 @@ import { Sound } from '../types/GameTypes'
 
 let loadedFiles = 0
 
-const preloadSound = async (sound: HTMLAudioElement, amount: number) => {
+const preloadSound = async (sound: HTMLAudioElement, amount: number): Promise<boolean> => {
   return new Promise((resolve, reject) => {
     sound.oncanplay = (e) => {
       loadedFiles++
@@ -13,16 +13,16 @@ const preloadSound = async (sound: HTMLAudioElement, amount: number) => {
   })
 }
 
-// TODO: Get rid of the any.
-export default async (sounds: string[], ext: string): Promise<any> => {
-  Promise.all(
+export default async (sounds: string[], ext: string): Promise<Sound[]> => {
+  return Promise.all(
     sounds.map(async (soundName: string): Promise<Sound> => {
-      const sound = document.createElement('audio')
-      sound.src = `/sounds/${soundName}.${ext}`
-      await preloadSound(sound, sounds.length)
+      const soundElement = document.createElement('audio')
+      soundElement.src = `/sounds/${soundName}.${ext}`
+      // TODO: Well this sucks. The main function is fucked for now.
+      // await preloadSound(sound, sounds.length)
       return {
         id: soundName,
-        element: sound,
+        element: soundElement,
       }
     })
   )
