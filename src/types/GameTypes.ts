@@ -4,6 +4,7 @@ export interface GameConfig {
   height: number
   fps: number
   audioExt: string
+  audioVolume: number
   scanLines: boolean
   controlKeyMap: ControlKeyMap
   useDebugger: boolean

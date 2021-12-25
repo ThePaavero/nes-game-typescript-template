@@ -1,3 +1,5 @@
+import config from '../../../GameConfig'
+
 const globalVarKey = '___NES_GAME_GLOBALS'
 
 export const logOnce = (toLog: any): void => {
@@ -18,6 +20,7 @@ export const randomIntFromInterval = (min: number, max: number): number => {
 
 export const playSound = (soundName: string) => {
   const audioElement: HTMLAudioElement = document.querySelector(`.audio-${soundName}`)
+  audioElement.volume = config.audioVolume
   if (!audioElement) {
     console.warn(`Could not load audio element by name "${soundName}"`)
     return
