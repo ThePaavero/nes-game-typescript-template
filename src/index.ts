@@ -4,6 +4,7 @@ import Controls from './engine/Controls'
 import ThingHelper from './engine/utils/ThingHelper'
 import Game from './game/Game'
 import imageNames from './../images.json'
+import soundNames from './../sounds.json'
 import preloadImages from './engine/ImagePreloader'
 import { Thing, GameState } from './types/GameTypes'
 import { setUpDebugger } from './engine/utils/StateDebugger'
@@ -31,6 +32,7 @@ const init = async () => {
   renderLoadingScreen(context, Config.name)
 
   const images = await preloadImages(imageNames)
+  const sounds = await preloadSounds(soundNames)
   const things: Thing[] = []
   const state: GameState = {
     things,
