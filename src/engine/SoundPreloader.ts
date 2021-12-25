@@ -1,14 +1,9 @@
 import { Sound } from '../types/GameTypes'
 
-let loadedFiles = 0
-
-const preloadSound = async (sound: HTMLAudioElement, amount: number): Promise<boolean> => {
+const preloadSound = async (sound: HTMLAudioElement): Promise<boolean> => {
   return new Promise((resolve, reject) => {
     sound.oncanplay = (e) => {
-      loadedFiles++
-      if (loadedFiles === amount) {
-        resolve(true)
-      }
+      resolve(true)
     }
   })
 }
@@ -19,8 +14,7 @@ export default async (sounds: string[], ext: string): Promise<Sound[]> => {
       const soundElement = document.createElement('audio')
       soundElement.src = `/sounds/${soundName}.${ext}`
       soundElement.classList.add(`audio-${soundName}`)
-      // TODO: Well this sucks. The main function is fucked for now.
-      // await preloadSound(sound, sounds.length)
+      await preloadSound(soundElement)
       document.body.appendChild(soundElement)
       return {
         id: soundName,
