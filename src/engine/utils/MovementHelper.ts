@@ -1,6 +1,6 @@
-import { Thing } from '../../types/GameTypes'
+import { GameState, Thing } from '../../types/GameTypes'
 import { buttonIsPressed } from './Misc'
-import { getThingById } from './ThingHelper'
+import { doHitChecks, getThingById, keepThingWithinScreen } from './ThingHelper'
 
 export const round = (number: number): number => {
   return parseFloat(number.toFixed(2))
@@ -62,4 +62,12 @@ export const applyInertia = (things: Thing[]): void => {
 
 export const getThingsThatMove = (things: Thing[]): Thing[] => {
   return things.filter((thing: Thing) => thing.traits.moves)
+}
+
+export const doGenericPhysics = (state: GameState, player: Thing, canvas: HTMLCanvasElement, onThingsHit: any) => {
+  updateForces(state.things, state.keysDown)
+  applyForces(state.things)
+  applyInertia(state.things)
+  keepThingWithinScreen(player, canvas)
+  doHitChecks(state.things, onThingsHit)
 }

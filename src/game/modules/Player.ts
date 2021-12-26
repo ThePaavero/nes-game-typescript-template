@@ -1,4 +1,6 @@
-import { PlayerType } from './../../types/GameTypes'
+import { fire } from './PlayerProjectile'
+import { buttonIsPressed } from '../../engine/utils/Misc'
+import { GameState, PlayerType } from './../../types/GameTypes'
 
 const Player = (): PlayerType => {
   return {
@@ -26,6 +28,12 @@ const Player = (): PlayerType => {
       inertia: 0.08,
     },
     mass: 50,
+  }
+}
+
+export const applyPlayerActions = (state: GameState, player: PlayerType) => {
+  if (buttonIsPressed('b', state.keysDown)) {
+    fire(state, player)
   }
 }
 

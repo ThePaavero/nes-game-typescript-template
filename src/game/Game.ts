@@ -1,10 +1,8 @@
-import { updateForces, applyForces, applyInertia } from '../engine/utils/MovementHelper'
+import { doGenericPhysics } from '../engine/utils/MovementHelper'
 import { Image, Sound, Thing, GameState, PlayerType } from '../types/GameTypes'
-import { doHitChecks, keepThingWithinScreen, removeThing } from '../engine/utils/ThingHelper'
-import Player from './modules/Player'
-import Enemy, { enemyExplode } from './modules/Enemy'
-import { fire } from './modules/PlayerProjectile'
-import { randomIntFromInterval, buttonIsPressed } from '../engine/utils/Misc'
+import { centerThing, doHitChecks, isInTuple, removeThing } from '../engine/utils/ThingHelper'
+import Player, { applyPlayerActions } from './modules/Player'
+import { enemyExplode, shouldSpawnEnemy, spawnEnemy } from './modules/Enemy'
 import { killOffScreenThings } from './../engine/utils/ThingHelper'
 import { drawThings, getImage, write } from './../engine/utils/RenderingHelper'
 
@@ -35,16 +33,12 @@ const Game = (
   state.things.push(player)
 
   const updateState = (state: GameState): void => {
-    updateForces(state.things, state.keysDown)
-    applyForces(state.things)
-    applyInertia(state.things)
-    keepThingWithinScreen(player, canvas)
+    doGenericPhysics(state, player, canvas, onThingsHit)
     killOffScreenThings(canvas, state)
-    doHitChecks(state.things, onThingsHit)
     scrollBackground(state)
 
     if (shouldSpawnEnemy()) {
-      spawnEnemy(state.things)
+      spawnEnemy(state.things, canvas)
     }
 
     applyPlayerActions(state, player)
@@ -55,16 +49,6 @@ const Game = (
     if (state.loopingBackgroundPosition >= 0) {
       state.loopingBackgroundPosition = (loopingBackgroundHeight / 2) * -1 // TODO: This isn't right.
     }
-  }
-
-  const applyPlayerActions = (state: GameState, player: PlayerType) => {
-    if (buttonIsPressed('b', state.keysDown)) {
-      fire(state, player)
-    }
-  }
-
-  const isInTuple = (thingPair: [Thing, Thing], thingId: string) => {
-    return !!thingPair.find((t) => t.id === thingId)
   }
 
   const onThingsHit = (thingPair: [Thing, Thing]) => {
@@ -89,10 +73,6 @@ const Game = (
     }
   }
 
-  const shouldSpawnEnemy = (): boolean => {
-    return randomIntFromInterval(0, 100) === 0
-  }
-
   const drawBackground = (context: CanvasRenderingContext2D, state: GameState): void => {
     context.drawImage(getImage(images, 'scrollingBackground').element, 0, state.loopingBackgroundPosition)
   }
@@ -115,25 +95,11 @@ const Game = (
     requestAnimationFrame(tick)
   }
 
-  const applyInitialPlayerPosition = () => {
-    player.position.x = canvas.width / 2 - player.width / 2
-    player.position.y = canvas.height / 2 - player.height / 2
-  }
-
-  const spawnEnemy = (things: Thing[]) => {
-    const enemy: Thing = Enemy()
-    enemy.position.y = enemy.height * -1
-    enemy.position.x = randomIntFromInterval(0, canvas.width - enemy.width)
-    enemy.momentum.forces.y = 0.3
-    enemy.momentum.maxForces.y = randomIntFromInterval(0.3, 1)
-    things.push(enemy)
-  }
-
   const startGame = (): void => {
     console.log('Starting Game module with state:', state)
     console.log('Starting Game module with images:', images)
     console.log('Starting Game module with sounds:', sounds)
-    applyInitialPlayerPosition()
+    centerThing(player, canvas)
     tick()
   }
 

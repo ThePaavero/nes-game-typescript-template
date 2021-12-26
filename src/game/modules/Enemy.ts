@@ -1,4 +1,4 @@
-import { playSound } from '../../engine/utils/Misc'
+import { playSound, randomIntFromInterval } from '../../engine/utils/Misc'
 import { GameState, Thing } from './../../types/GameTypes'
 
 const Enemy = (): Thing => {
@@ -33,6 +33,19 @@ const Enemy = (): Thing => {
 export const enemyExplode = (state: GameState, enemy: Thing) => {
   playSound('explosion')
   // TODO: Animations, etc.
+}
+
+export const shouldSpawnEnemy = (): boolean => {
+  return randomIntFromInterval(0, 100) === 0
+}
+
+export const spawnEnemy = (things: Thing[], canvas: HTMLCanvasElement) => {
+  const enemy: Thing = Enemy()
+  enemy.position.y = enemy.height * -1
+  enemy.position.x = randomIntFromInterval(0, canvas.width - enemy.width)
+  enemy.momentum.forces.y = 0.3
+  enemy.momentum.maxForces.y = randomIntFromInterval(0.3, 1)
+  things.push(enemy)
 }
 
 export default Enemy

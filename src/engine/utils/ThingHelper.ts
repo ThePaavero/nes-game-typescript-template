@@ -85,4 +85,13 @@ export const doHitChecks = (things: Thing[], callbackFunction: Function) => {
   })
 }
 
+export const centerThing = (thing: Thing, canvas: HTMLCanvasElement) => {
+  thing.position.x = canvas.width / 2 - thing.width / 2
+  thing.position.y = canvas.height / 2 - thing.height / 2
+}
+
+export const isInTuple = (thingPair: [Thing, Thing], thingId: string) => {
+  return !!thingPair.find((t) => t.id === thingId)
+}
+
 export default ThingHelper()
