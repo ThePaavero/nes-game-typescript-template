@@ -1,5 +1,6 @@
 import Config from './../../../GameConfig'
 
+// TODO: Support for same sound playing on top of itself.
 export const playSound = (soundName: string, volume?: number): void => {
   const audioElement: HTMLAudioElement = document.querySelector(`.audio-${soundName}`)
   audioElement.volume = volume || Config.audioVolume
