@@ -1,4 +1,5 @@
-import { playSound, randomIntFromInterval } from '../../engine/utils/Misc'
+import { playSound } from './../../engine/utils/SoundHelper'
+import { randomIntFromInterval } from '../../engine/utils/Misc'
 import { GameState, Thing } from './../../types/GameTypes'
 
 const Enemy = (): Thing => {

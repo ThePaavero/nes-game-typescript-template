@@ -1,4 +1,4 @@
-import { playSound } from '../../engine/utils/Misc'
+import { playSound } from '../../engine/utils/SoundHelper'
 import { getThingById } from './../../engine/utils/ThingHelper'
 import { GameState, PlayerType, Projectile } from './../../types/GameTypes'
 
