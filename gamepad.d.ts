@@ -1,1 +1,1 @@
-declare module "html5-gamepad"
+declare module 'html5-gamepad'

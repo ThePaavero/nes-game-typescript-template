@@ -67,6 +67,7 @@ const Game = (
       }
     } else if (isInTuple(thingPair, 'playerProjectile') && isInTuple(thingPair, 'enemy')) {
       // Player projectile hit an enemy.
+      player.points++
       const enemy = thingPair.find((t) => t.id === 'enemy')
       enemyExplode(state, enemy)
       removeThing(state, enemy)
