@@ -64,7 +64,12 @@ export const getThingsThatMove = (things: Thing[]): Thing[] => {
   return things.filter((thing: Thing) => thing.traits.moves)
 }
 
-export const doGenericPhysics = (state: GameState, player: Thing, canvas: HTMLCanvasElement, onThingsHit: any) => {
+export const doGenericPhysics = (
+  state: GameState,
+  player: Thing,
+  canvas: HTMLCanvasElement,
+  onThingsHit: (thingPair: [Thing, Thing]) => void
+) => {
   updateForces(state.things, state.keysDown)
   applyForces(state.things)
   applyInertia(state.things)
