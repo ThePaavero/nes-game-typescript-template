@@ -1,8 +1,10 @@
+import { logOnce } from './Misc'
 import { Canvas, GameState, Image, Thing } from '../../types/GameTypes'
 import { getThingsThatMove } from './MovementHelper'
 
 let things: Thing[] = []
 let images: Image[] = []
+let previousHitCheckPairHit: [Thing, Thing] | undefined
 
 export const getThingById = (id: string): Thing => {
   return things.find((t: Thing) => t.id === id)
@@ -73,13 +75,17 @@ export const doHitChecks = (things: Thing[], callbackFunction: Function) => {
       if (!thingB || thingA === thingB) {
         return
       }
+
       if (
         thingA.position.x < thingB.position.x + thingB.width &&
         thingA.position.x + thingA.width > thingB.position.x &&
         thingA.position.y < thingB.position.y + thingB.height &&
-        thingA.position.y + thingA.height > thingB.position.y
+        thingA.position.y + thingA.height > thingB.position.y &&
+        previousHitCheckPairHit !== [thingB, thingA]
       ) {
         callbackFunction([thingA, thingB])
+        console.log('----hit')
+        previousHitCheckPairHit = [thingA, thingB]
       }
     })
   })
