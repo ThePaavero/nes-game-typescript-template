@@ -68,8 +68,10 @@ const Game = (
     } else if (isInTuple(thingPair, 'playerProjectile') && isInTuple(thingPair, 'enemy')) {
       // Player projectile hit an enemy.
       const enemy = thingPair.find((t) => t.id === 'enemy')
+      const projectile = thingPair.find((t) => t.id === 'playerProjectile')
       const enemyClone = { ...enemy }
       removeThing(state, enemy)
+      removeThing(state, projectile)
       enemyExplode(state, enemyClone)
       if (!enemy.gavePoints) {
         // This needs to be done due to the nature of the hit checking (there will be TWO hits of this type, just the Things reversed in the tuple).
