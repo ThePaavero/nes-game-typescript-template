@@ -83,6 +83,7 @@ export interface Thing {
   traits?: Traits
   momentum?: Momentum
   mass?: number
+  gavePoints?: boolean
 }
 
 export interface PlayerType extends Thing {
