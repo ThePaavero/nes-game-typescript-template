@@ -72,10 +72,6 @@ export const doHitChecks = (things: Thing[], callbackFunction: Function) => {
   const thingsOfInterest = things.filter((t) => t.traits.doHitChecks)
   thingsOfInterest.forEach((thingA: Thing, index: number): void => {
     thingsOfInterest.forEach((thingB: Thing, index: number): void => {
-      if (!thingB || thingA === thingB) {
-        return
-      }
-
       if (
         thingA.position.x < thingB.position.x + thingB.width &&
         thingA.position.x + thingA.width > thingB.position.x &&
@@ -84,7 +80,6 @@ export const doHitChecks = (things: Thing[], callbackFunction: Function) => {
         previousHitCheckPairHit !== [thingB, thingA]
       ) {
         callbackFunction([thingA, thingB])
-        console.log('----hit')
         previousHitCheckPairHit = [thingA, thingB]
       }
     })
