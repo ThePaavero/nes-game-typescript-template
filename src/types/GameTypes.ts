@@ -84,6 +84,8 @@ export interface Thing {
   momentum?: Momentum
   mass?: number
   gavePoints?: boolean
+  image?: boolean
+  color?: string
 }
 
 export interface PlayerType extends Thing {

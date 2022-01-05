@@ -11,7 +11,7 @@ export const getThingById = (id: string): Thing => {
 }
 
 export const getThingImage = (id: string): HTMLImageElement | CanvasImageSource | null => {
-  return images.find((i: Image) => i.id === id).element || null
+  return images.find((i: Image) => i.id === id)?.element || null
 }
 
 export const keepThingWithinScreen = (thing: Thing, canvas: HTMLCanvasElement) => {

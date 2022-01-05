@@ -1,3 +1,4 @@
+import { createExplosion } from './../../engine/utils/RenderingHelper'
 import { playSound } from './../../engine/utils/SoundHelper'
 import { randomIntFromInterval } from '../../engine/utils/Misc'
 import { GameState, Thing } from './../../types/GameTypes'
@@ -33,7 +34,7 @@ const Enemy = (): Thing => {
 
 export const enemyExplode = (state: GameState, enemy: Thing) => {
   playSound('explosion')
-  // TODO: Animations, etc.
+  createExplosion(state, enemy)
 }
 
 export const shouldSpawnEnemy = (): boolean => {

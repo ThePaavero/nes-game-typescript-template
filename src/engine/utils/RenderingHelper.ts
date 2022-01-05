@@ -1,10 +1,22 @@
-import { Image, Thing } from './../../types/GameTypes'
+import { Coordinates, GameState, Image, Thing, Traits } from './../../types/GameTypes'
+import { randomIntFromInterval } from './Misc'
 import { getThingImage } from './ThingHelper'
 
 export const drawThings = (context: CanvasRenderingContext2D, things: Thing[]): void => {
   things.forEach((thing: Thing) => {
     const img: CanvasImageSource | null = getThingImage(thing.id)
     if (!img) {
+      context.beginPath()
+      context.arc(
+        thing.position.x + thing.width / 2,
+        thing.position.y + thing.height / 2,
+        thing.width,
+        0,
+        2 * Math.PI,
+        false
+      )
+      context.fillStyle = thing.color || '#fff'
+      context.fill()
       return
     }
     context.drawImage(img, thing.position.x, thing.position.y, thing.width, thing.height)
@@ -34,4 +46,42 @@ export const write = (
   context.fillStyle = color || 'white'
   context.font = `${size}px PixelEmulatorxq08`
   context.fillText(text, x, y)
+}
+
+export const createExplosion = (state: GameState, thing: Thing, forceMultiplier = 1): void => {
+  const center: Coordinates = {
+    x: thing.position.x + thing.width / 2,
+    y: thing.position.y + thing.height / 2,
+  }
+  const numberOfDebrisParticles = randomIntFromInterval(10, 20) * forceMultiplier
+  const particles = [...Array(numberOfDebrisParticles)].map((_, i: number): Thing => {
+    const size = randomIntFromInterval(1, 2) * forceMultiplier
+    return {
+      id: 'debrisParticle',
+      width: size,
+      height: size,
+      position: {
+        x: center.x,
+        y: center.y,
+      },
+      traits: {
+        moves: true,
+        doHitChecks: false,
+      },
+      momentum: {
+        forces: {
+          x: randomIntFromInterval(-2, 2) * forceMultiplier,
+          y: randomIntFromInterval(-2, 2) * forceMultiplier,
+        },
+        maxForces: {
+          x: 0.7,
+          y: 0.7,
+        },
+        acceleration: 1,
+        inertia: 0.005,
+      },
+      mass: 50,
+    }
+  })
+  state.things.push(...particles)
 }
