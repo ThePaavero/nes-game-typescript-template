@@ -104,9 +104,10 @@ export const createExplosion = (state: GameState, thing: Thing, forceMultiplier 
     x: thing.position.x + thing.width / 2,
     y: thing.position.y + thing.height / 2,
   }
+
   const numberOfDebrisParticles = randomIntFromInterval(5, 10) * forceMultiplier
   const particles = [...Array(numberOfDebrisParticles)].map((_: null, i: number): Thing => {
-    const size = randomIntFromInterval(0.5, 2)
+    const size = randomIntFromInterval(0.5, 2) * forceMultiplier
     return {
       id: 'debrisParticle',
       width: size,
