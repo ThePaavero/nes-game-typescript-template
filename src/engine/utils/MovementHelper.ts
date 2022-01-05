@@ -26,7 +26,7 @@ export const updatePlayerForces = (player: Thing, keysDown: string[]): void => {
 }
 
 export const updateForces = (things: Thing[], keysDown: string[]): void => {
-  updatePlayerForces(getThingById('player'), keysDown)
+  updatePlayerForces(getThingById(things, 'player'), keysDown)
   // TODO: Update the rest of moving things.
 }
 

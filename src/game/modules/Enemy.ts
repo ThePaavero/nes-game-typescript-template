@@ -1,4 +1,4 @@
-import { createExplosion } from './../../engine/utils/RenderingHelper'
+import { createExplosion } from './../../engine/utils/ThingHelper'
 import { playSound } from './../../engine/utils/SoundHelper'
 import { randomIntFromInterval } from '../../engine/utils/Misc'
 import { GameState, Thing } from './../../types/GameTypes'

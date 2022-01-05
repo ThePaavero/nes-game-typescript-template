@@ -1,9 +1,9 @@
 import { playSound } from '../../engine/utils/SoundHelper'
 import { getThingById } from './../../engine/utils/ThingHelper'
-import { GameState, PlayerType, Projectile } from './../../types/GameTypes'
+import { GameState, Thing, PlayerType, Projectile } from './../../types/GameTypes'
 
-const PlayerProjectile = (): Projectile => {
-  const player = getThingById('player') as PlayerType
+const PlayerProjectile = (things: Thing[]): Projectile => {
+  const player = getThingById(things, 'player') as PlayerType
   return {
     player,
     id: 'playerProjectile',
@@ -38,7 +38,7 @@ export const fire = (state: GameState, player: PlayerType) => {
     return
   }
   playSound('pew')
-  state.things.push(PlayerProjectile())
+  state.things.push(PlayerProjectile(state.things))
   player.canFire = false
   setTimeout(() => {
     player.canFire = true

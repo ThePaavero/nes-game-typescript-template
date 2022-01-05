@@ -1,6 +1,7 @@
+import { logOnce, randomIntFromInterval } from './../engine/utils/Misc'
 import { doGenericPhysics } from '../engine/utils/MovementHelper'
 import { Image, Sound, Thing, GameState, PlayerType } from '../types/GameTypes'
-import { centerThing, doHitChecks, isInTuple, removeThing } from '../engine/utils/ThingHelper'
+import { centerThing, getThingsById, isInTuple, removeThing } from '../engine/utils/ThingHelper'
 import Player, { applyPlayerActions } from './modules/Player'
 import { enemyExplode, shouldSpawnEnemy, spawnEnemy } from './modules/Enemy'
 import { killOffScreenThings } from './../engine/utils/ThingHelper'
@@ -32,10 +33,21 @@ const Game = (
 
   state.things.push(player)
 
+  const updateDebrisParticles = (state: GameState): void => {
+    getThingsById(state.things, 'debrisParticle').forEach((particle: Thing) => {
+      particle.width -= 0.03
+      particle.height -= 0.03
+      if (particle.width < 0.1 || particle.height < 0.1) {
+        removeThing(state, particle)
+      }
+    })
+  }
+
   const updateState = (state: GameState): void => {
     doGenericPhysics(state, player, canvas, onThingsHit)
     killOffScreenThings(canvas, state)
     scrollBackground(state)
+    updateDebrisParticles(state)
 
     if (shouldSpawnEnemy()) {
       spawnEnemy(state.things, canvas)
