@@ -1,7 +1,6 @@
 import { preloadFont, write } from './engine/utils/RenderingHelper'
 import Config from './../GameConfig'
 import Controls from './engine/Controls'
-import ThingHelper from './engine/utils/ThingHelper'
 import Game from './game/Game'
 import imageNames from './../images.json'
 import soundNames from './../sounds.json'
@@ -10,6 +9,7 @@ import preloadSounds from './engine/SoundPreloader'
 import { Thing, GameState } from './types/GameTypes'
 import { setUpDebugger } from './engine/utils/StateDebugger'
 import './scss/main.scss'
+import { setImages } from './engine/utils/ImageHelper'
 
 const renderLoadingScreen = (context: CanvasRenderingContext2D, gameName: string): void => {
   write(context, `Loading ' ${gameName} ' . . .`, 10, 10, 10)
@@ -43,10 +43,9 @@ const init = async () => {
     loopingBackgroundPosition: 0,
   }
 
+  setImages(images)
+  
   Controls.init(Config.controlKeyMap, state)
-
-  ThingHelper.setThings(things)
-  ThingHelper.setImages(images)
 
   if (Config.useDebugger) {
     setUpDebugger(state, 100)

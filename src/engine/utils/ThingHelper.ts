@@ -1,10 +1,6 @@
 import { Canvas, GameState, Image, Thing } from '../../types/GameTypes'
 import { getThingsThatMove } from './MovementHelper'
 
-let things: Thing[] = []
-let images: Image[] = []
-let previousHitCheckPairHit: [Thing, Thing] | undefined
-
 export const getThingById = (things: Thing[], id: string): Thing => {
   return things.find((t: Thing) => t.id === id)
 }
@@ -13,7 +9,7 @@ export const getThingsById = (things: Thing[], id: string): Thing[] | [] => {
   return things.filter((t: Thing) => t.id === id)
 }
 
-export const getThingImage = (id: string): HTMLImageElement | CanvasImageSource | null => {
+export const getThingImage = (id: string, images: Image[]): HTMLImageElement | CanvasImageSource | null => {
   return images.find((i: Image) => i.id === id)?.element || null
 }
 
@@ -33,21 +29,6 @@ export const keepThingWithinScreen = (thing: Thing, canvas: HTMLCanvasElement) =
 
 export const removeThing = (state: GameState, thing: Thing): void => {
   state.things = state.things.filter((t) => t !== thing)
-}
-
-const ThingHelper = () => {
-  const setThings = (data: Thing[]): void => {
-    things = data
-  }
-
-  const setImages = (data: Image[]): void => {
-    images = data
-  }
-
-  return {
-    setThings,
-    setImages,
-  }
 }
 
 export const killOffScreenThings = (canvas: Canvas, state: GameState): void => {
@@ -79,11 +60,9 @@ export const doHitChecks = (things: Thing[], callbackFunction: Function) => {
         thingA.position.x < thingB.position.x + thingB.width &&
         thingA.position.x + thingA.width > thingB.position.x &&
         thingA.position.y < thingB.position.y + thingB.height &&
-        thingA.position.y + thingA.height > thingB.position.y &&
-        previousHitCheckPairHit !== [thingB, thingA]
+        thingA.position.y + thingA.height > thingB.position.y
       ) {
         callbackFunction([thingA, thingB])
-        previousHitCheckPairHit = [thingA, thingB]
       }
     })
   })
@@ -97,5 +76,3 @@ export const centerThing = (thing: Thing, canvas: HTMLCanvasElement) => {
 export const isInTuple = (thingPair: [Thing, Thing], thingId: string) => {
   return !!thingPair.find((t) => t.id === thingId)
 }
-
-export default ThingHelper()

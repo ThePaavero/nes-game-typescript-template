@@ -1,10 +1,10 @@
-import { Coordinates, GameState, Image, Thing, Traits } from './../../types/GameTypes'
-import { randomIntFromInterval } from './Misc'
+import { getImages } from './ImageHelper'
+import { Image, Thing } from './../../types/GameTypes'
 import { getThingImage } from './ThingHelper'
 
 export const drawThings = (context: CanvasRenderingContext2D, things: Thing[]): void => {
   things.forEach((thing: Thing) => {
-    const img: CanvasImageSource | null = getThingImage(thing.id)
+    const img: CanvasImageSource | null = getThingImage(thing.id, getImages())
     if (!img) {
       context.beginPath()
       context.arc(
