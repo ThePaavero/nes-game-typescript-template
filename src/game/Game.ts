@@ -5,6 +5,14 @@ import { applyPlayerActions, createPlayer } from './modules/Player'
 import { enemyExplode, shouldSpawnEnemy, spawnEnemy } from './modules/Enemy'
 import { killOffScreenThings } from './../engine/utils/ThingHelper'
 import { drawThings, getImage, write } from './../engine/utils/RenderingHelper'
+import { FPS } from 'yy-fps'
+import GameConfig from '../../GameConfig'
+
+let fpsMeter: { frame: () => void }
+
+if (GameConfig.fpsMeter) {
+  fpsMeter = new FPS()
+}
 
 const loopingBackgroundHeight = 591
 
@@ -110,7 +118,9 @@ const Game = (
   const tick = (): void => {
     updateState(state)
     updateScreen(context)
-
+    if (GameConfig.fpsMeter) {
+      fpsMeter.frame()
+    }
     requestAnimationFrame(tick)
   }
 

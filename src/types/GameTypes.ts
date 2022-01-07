@@ -8,6 +8,7 @@ export interface GameConfig {
   scanLines: boolean
   controlKeyMap: ControlKeyMap
   useDebugger: boolean
+  fpsMeter: boolean
 }
 
 export interface ControlKeyMap {

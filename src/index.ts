@@ -44,7 +44,7 @@ const init = async () => {
   }
 
   setImages(images)
-  
+
   Controls.init(Config.controlKeyMap, state)
 
   if (Config.useDebugger) {

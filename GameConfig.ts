@@ -19,4 +19,5 @@ export default {
     a: ['.', 'x'],
   },
   useDebugger: false,
+  fpsMeter: true,
 } as GameConfig

@@ -34,6 +34,7 @@
     "webpack-dev-server": "^4.6.0"
   },
   "dependencies": {
-    "html5-gamepad": "^1.1.0"
+    "html5-gamepad": "^1.1.0",
+    "yy-fps": "^2.0.0"
   }
 }
