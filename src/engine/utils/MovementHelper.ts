@@ -1,5 +1,5 @@
 import { GameState, Thing } from '../../types/GameTypes'
-import { buttonIsPressed } from './Misc'
+import { buttonIsPressed } from './ControlsHelper'
 import { doHitChecks, getThingById, keepThingWithinScreen } from './ThingHelper'
 
 export const round = (number: number): number => {

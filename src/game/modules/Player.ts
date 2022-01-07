@@ -1,5 +1,5 @@
 import { fire } from './PlayerProjectile'
-import { buttonIsPressed } from '../../engine/utils/Misc'
+import { buttonIsPressed } from '../../engine/utils/ControlsHelper'
 import { GameState, PlayerType } from './../../types/GameTypes'
 
 export const createPlayer = (): PlayerType => {

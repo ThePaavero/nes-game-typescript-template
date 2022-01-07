@@ -8,10 +8,6 @@ export const logOnce = (toLog: any): void => {
   window[globalVarKey].NES_GAME_loggedOnce = true
 }
 
-export const buttonIsPressed = (slug: string, keysDown: string[]): boolean => {
-  return keysDown.includes(slug)
-}
-
 export const randomIntFromInterval = (min: number, max: number): number => {
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
