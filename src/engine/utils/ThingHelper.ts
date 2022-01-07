@@ -1,4 +1,5 @@
-import { Canvas, GameState, Image, Thing } from '../../types/GameTypes'
+import { Canvas, Image, Thing } from '../../types/GameTypes'
+import { GameState } from '../../game/GameTypes'
 import { getThingsThatMove } from './MovementHelper'
 
 export const getThingById = (things: Thing[], id: string): Thing => {

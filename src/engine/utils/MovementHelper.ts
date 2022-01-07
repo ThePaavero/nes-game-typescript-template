@@ -1,4 +1,5 @@
-import { GameState, Thing } from '../../types/GameTypes'
+import { Thing } from '../../types/GameTypes'
+import { GameState } from '../../game/GameTypes'
 import { buttonIsPressed } from './ControlsHelper'
 import { doHitChecks, getThingById, keepThingWithinScreen } from './ThingHelper'
 

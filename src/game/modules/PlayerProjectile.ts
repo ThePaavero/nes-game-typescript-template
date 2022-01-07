@@ -1,6 +1,7 @@
 import { playSound } from '../../engine/utils/SoundHelper'
+import { Thing } from '../../types/GameTypes'
 import { getThingById } from './../../engine/utils/ThingHelper'
-import { GameState, Thing, PlayerType, Projectile } from './../../types/GameTypes'
+import { GameState, PlayerType, Projectile } from '../GameTypes'
 
 export const createPlayerProjectile = (things: Thing[]): Projectile => {
   const player = getThingById(things, 'player') as PlayerType

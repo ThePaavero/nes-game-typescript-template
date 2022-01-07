@@ -1,4 +1,4 @@
-import { GameState } from '../../types/GameTypes'
+import { GameState } from '../../game/GameTypes'
 
 export const setUpDebugger = (state: GameState, delay: number) => {
   const element = document.querySelector('.debugger')

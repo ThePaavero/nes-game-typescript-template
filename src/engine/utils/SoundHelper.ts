@@ -1,4 +1,4 @@
-import Config from './../../../GameConfig'
+import Config from '../../../BaseTypes'
 
 // TODO: Support for same sound playing on top of itself.
 export const playSound = (soundName: string, volume?: number): void => {

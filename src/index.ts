@@ -1,15 +1,16 @@
 import { preloadFont, write } from './engine/utils/RenderingHelper'
-import Config from './../GameConfig'
+import Config from '../BaseTypes'
 import Controls from './engine/Controls'
 import Game from './game/Game'
 import imageNames from './../images.json'
 import soundNames from './../sounds.json'
 import preloadImages from './engine/ImagePreloader'
 import preloadSounds from './engine/SoundPreloader'
-import { Thing, GameState } from './types/GameTypes'
+import { Thing } from './types/GameTypes'
 import { setUpDebugger } from './engine/utils/StateDebugger'
 import './scss/main.scss'
 import { setImages } from './engine/utils/ImageHelper'
+import { GameState } from './game/GameTypes'
 
 const renderLoadingScreen = (context: CanvasRenderingContext2D, gameName: string): void => {
   write(context, `Loading ' ${gameName} ' . . .`, 10, 10, 10)
