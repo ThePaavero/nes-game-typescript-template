@@ -1,4 +1,3 @@
-import { logOnce, randomIntFromInterval } from './../engine/utils/Misc'
 import { doGenericPhysics } from '../engine/utils/MovementHelper'
 import { Image, Sound, Thing, GameState, PlayerType } from '../types/GameTypes'
 import { centerThing, getThingsById, isInTuple, removeThing } from '../engine/utils/ThingHelper'
