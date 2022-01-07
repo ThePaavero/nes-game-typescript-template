@@ -18,31 +18,24 @@ body {
   font-style: normal;
 }
 
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .game {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
   z-index: 10000;
   text-align: center;
+  width: 95vw;
   max-width: 960px;
-  padding: 10px;
-  height: 0;
-  padding-top: 50%;
   margin: 0 auto;
   z-index: 0;
   cursor: none;
 
   canvas {
-    position: absolute;
     border: solid 2px rgba(255, 255, 255, 0.5) !important;
     border-radius: 15px;
-    top: 0;
-    left: 0;
-    right: 0;
     width: 100%;
     margin: 0 auto;
     height: auto;
