@@ -2,7 +2,7 @@ import { fire } from './PlayerProjectile'
 import { buttonIsPressed } from '../../engine/utils/Misc'
 import { GameState, PlayerType } from './../../types/GameTypes'
 
-const Player = (): PlayerType => {
+export const createPlayer = (): PlayerType => {
   return {
     id: 'player',
     width: 23,
@@ -36,5 +36,3 @@ export const applyPlayerActions = (state: GameState, player: PlayerType) => {
     fire(state, player)
   }
 }
-
-export default Player

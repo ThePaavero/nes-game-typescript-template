@@ -1,7 +1,7 @@
 import { doGenericPhysics } from '../engine/utils/MovementHelper'
 import { Image, Sound, Thing, GameState, PlayerType } from '../types/GameTypes'
 import { centerThing, getThingsById, isInTuple, removeThing } from '../engine/utils/ThingHelper'
-import Player, { applyPlayerActions } from './modules/Player'
+import { applyPlayerActions, createPlayer } from './modules/Player'
 import { enemyExplode, shouldSpawnEnemy, spawnEnemy } from './modules/Enemy'
 import { killOffScreenThings } from './../engine/utils/ThingHelper'
 import { drawThings, getImage, write } from './../engine/utils/RenderingHelper'
@@ -15,9 +15,9 @@ const Game = (
   sounds: Sound[],
   state: GameState
 ): void => {
-  const player: PlayerType = Player()
+  const player: PlayerType = createPlayer()
 
-  const initializeGameState = (state: GameState) => {
+  const initializeGameState = (state: GameState): GameState => {
     player.canFire = true
     player.firing = false
     player.points = 0
@@ -55,14 +55,14 @@ const Game = (
     applyPlayerActions(state, player)
   }
 
-  const scrollBackground = (state: GameState) => {
+  const scrollBackground = (state: GameState): void => {
     state.loopingBackgroundPosition += 1 // TODO
     if (state.loopingBackgroundPosition >= 0) {
       state.loopingBackgroundPosition = (loopingBackgroundHeight / 2) * -1 // TODO: This isn't right.
     }
   }
 
-  const onThingsHit = (thingPair: [Thing, Thing]) => {
+  const onThingsHit = (thingPair: [Thing, Thing]): void => {
     if (isInTuple(thingPair, 'player')) {
       if (!isInTuple(thingPair, 'playerProjectile')) {
         // Player hit something other than his own projectile.
@@ -96,7 +96,7 @@ const Game = (
     context.drawImage(getImage(images, 'scrollingBackground').element, 0, state.loopingBackgroundPosition)
   }
 
-  const drawStatusBar = (context: CanvasRenderingContext2D, points: number) => {
+  const drawStatusBar = (context: CanvasRenderingContext2D, points: number): void => {
     write(context, `POINTS: ${points}`, 8, 3, 3)
   }
 
