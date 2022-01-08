@@ -1,4 +1,4 @@
-import { Sound } from './types/BaseTypes'
+import { Sound } from './BaseTypes'
 
 const preloadSound = async (sound: HTMLAudioElement): Promise<boolean> => {
   return new Promise((resolve, reject) => {

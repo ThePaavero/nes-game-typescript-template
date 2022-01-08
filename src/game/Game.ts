@@ -1,5 +1,5 @@
 import { doGenericPhysics } from '../engine/utils/MovementHelper'
-import { Image, Sound, Thing } from '../engine/types/BaseTypes'
+import { Image, Sound, Thing } from '../engine/BaseTypes'
 import { GameState, PlayerType } from './GameTypes'
 import { centerThing, getThingsById, isInTuple, removeThing } from '../engine/utils/ThingHelper'
 import { applyPlayerActions, createPlayer } from './modules/Player'

@@ -2,7 +2,7 @@ import { createExplosion } from './../../engine/utils/EffectsHelper'
 import { playSound } from './../../engine/utils/SoundHelper'
 import { randomIntFromInterval } from '../../engine/utils/Misc'
 import { GameState } from '../GameTypes'
-import { Thing } from '../../engine/types/BaseTypes'
+import { Thing } from '../../engine/BaseTypes'
 
 export const createEnemy = (): Thing => {
   return {

@@ -1,4 +1,4 @@
-import { Canvas, Image, Thing } from '../types/BaseTypes'
+import { Canvas, Image, Thing } from '../BaseTypes'
 import { GameState } from '../../game/GameTypes'
 import { getThingsThatMove } from './MovementHelper'
 

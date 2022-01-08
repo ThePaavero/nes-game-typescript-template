@@ -1,7 +1,7 @@
-import { Thing } from '../types/BaseTypes'
+import { Thing } from '../BaseTypes'
 import { randomIntFromInterval } from './Misc'
 import { GameState } from '../../game/GameTypes'
-import { Coordinates } from '../types/BaseTypes'
+import { Coordinates } from '../BaseTypes'
 
 export const createExplosion = (state: GameState, thing: Thing, forceMultiplier = 1): void => {
   const center: Coordinates = {
