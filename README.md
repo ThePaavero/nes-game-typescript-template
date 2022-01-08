@@ -1,8 +1,8 @@
 # TypeScript Template for "Pseudo NES Games"\* in the Browser
 
-\* Adhering to NES spec. resolution, color palette, controls, aesthetics. Not an emulator or anything fancy.
+\* Adhering to the NES spec. only very superficially as in resolution, color palette, controls, aesthetics. Not an emulator or anything fancy.
 
-This is a personal hobby project for funsies.
+This is a personal hobby project just for funsies.
 
 ## Installing
 
