@@ -1,4 +1,4 @@
-import { Image } from '../types/GameTypes'
+import { Image } from './types/BaseTypes'
 
 export default async (images: string[]): Promise<Image[]> => {
   return Promise.all(

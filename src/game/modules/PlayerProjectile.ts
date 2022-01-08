@@ -1,5 +1,5 @@
 import { playSound } from '../../engine/utils/SoundHelper'
-import { Thing } from '../../types/GameTypes'
+import { Thing } from '../../engine/types/BaseTypes'
 import { getThingById } from './../../engine/utils/ThingHelper'
 import { GameState, PlayerType, Projectile } from '../GameTypes'
 

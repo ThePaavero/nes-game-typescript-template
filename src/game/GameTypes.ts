@@ -1,4 +1,4 @@
-import { Thing } from '../types/GameTypes'
+import { Thing } from '../engine/types/BaseTypes'
 
 export interface PlayerType extends Thing {
   canFire?: boolean

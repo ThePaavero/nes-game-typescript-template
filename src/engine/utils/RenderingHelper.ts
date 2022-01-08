@@ -1,5 +1,5 @@
 import { getImages } from './ImageHelper'
-import { Image, Thing } from '../../types/GameTypes'
+import { Image, Thing } from '../types/BaseTypes'
 import { getThingImage } from './ThingHelper'
 
 export const drawThings = (context: CanvasRenderingContext2D, things: Thing[]): void => {

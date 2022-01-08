@@ -1,4 +1,4 @@
-import { GameConfig } from './src/types/GameTypes'
+import { GameConfig } from './src/engine/types/BaseTypes'
 
 export default {
   name: 'Example Game',

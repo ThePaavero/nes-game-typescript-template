@@ -1,5 +1,5 @@
 import { doGenericPhysics } from '../engine/utils/MovementHelper'
-import { Image, Sound, Thing } from '../types/GameTypes'
+import { Image, Sound, Thing } from '../engine/types/BaseTypes'
 import { GameState, PlayerType } from './GameTypes'
 import { centerThing, getThingsById, isInTuple, removeThing } from '../engine/utils/ThingHelper'
 import { applyPlayerActions, createPlayer } from './modules/Player'
@@ -7,7 +7,7 @@ import { enemyExplode, shouldSpawnEnemy, spawnEnemy } from './modules/Enemy'
 import { killOffScreenThings } from './../engine/utils/ThingHelper'
 import { drawThings, getImage, write } from './../engine/utils/RenderingHelper'
 import { FPS } from 'yy-fps'
-import GameConfig from '../../BaseTypes'
+import GameConfig from '../../GameConfig'
 
 let fpsMeter: { frame: () => void }
 

@@ -1,4 +1,4 @@
-import { Image } from '../../types/GameTypes'
+import { Image } from '../types/BaseTypes'
 
 let images: Image[] = []
 
