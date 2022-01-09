@@ -7,7 +7,7 @@ const assetSets = [
   },
   {
     name: 'sounds',
-    ext: 'ogg',
+    ext: 'ogg', // TODO This should be read from config.
   }
 ]
 
