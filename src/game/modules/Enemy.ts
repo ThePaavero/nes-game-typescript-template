@@ -33,7 +33,7 @@ export const createEnemy = (): Enemy => {
   }
 }
 
-export const enemyExplode = (state: GameState, enemy: Thing) => {
+export const enemyExplode = (state: GameState, enemy: Enemy) => {
   playSound('explosion')
   createExplosion(state, enemy)
 }
@@ -43,7 +43,7 @@ export const shouldSpawnEnemy = (): boolean => {
 }
 
 export const spawnEnemy = (things: Thing[], canvas: HTMLCanvasElement) => {
-  const enemy: Thing = createEnemy()
+  const enemy: Enemy = createEnemy()
   enemy.position.y = enemy.height * -1
   enemy.position.x = randomIntFromInterval(0, canvas.width - enemy.width)
   enemy.momentum.forces.y = 0.3
