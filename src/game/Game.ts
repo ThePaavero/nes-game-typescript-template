@@ -1,4 +1,4 @@
-import { doGenericPhysics } from '../engine/utils/MovementHelper'
+import { applyGenericPhysics } from '../engine/utils/MovementHelper'
 import { Image, Sound, Thing } from '../engine/BaseTypes'
 import { Enemy, GameState, PlayerType } from './GameTypes'
 import { centerThing, getThingsById, isInTuple, removeThing } from '../engine/utils/ThingHelper'
@@ -52,7 +52,7 @@ const Game = (
   }
 
   const updateState = (state: GameState): void => {
-    doGenericPhysics(state, player, canvas, onThingsHit)
+    applyGenericPhysics(state, player, canvas, onThingsHit)
     killOffScreenThings(canvas, state)
     scrollBackground(state)
     updateDebrisParticles(state)

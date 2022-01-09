@@ -65,7 +65,7 @@ export const getThingsThatMove = (things: Thing[]): Thing[] => {
   return things.filter((thing: Thing) => thing.traits.moves)
 }
 
-export const doGenericPhysics = (
+export const applyGenericPhysics = (
   state: GameState,
   player: Thing,
   canvas: HTMLCanvasElement,
