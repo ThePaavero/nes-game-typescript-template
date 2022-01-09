@@ -1,6 +1,6 @@
 import { applyGenericPhysics } from '../engine/utils/MovementHelper'
 import { Image, Sound, Thing } from '../engine/BaseTypes'
-import { Enemy, GameState, PlayerType } from './GameTypes'
+import { Enemy, GameState, Player } from './GameTypes'
 import { centerThing, getThingsById, isInTuple, removeThing } from '../engine/utils/ThingHelper'
 import { applyPlayerActions, createPlayer } from './modules/Player'
 import { enemyExplode, shouldSpawnEnemy, spawnEnemy } from './modules/Enemy'
@@ -24,7 +24,7 @@ const Game = (
   sounds: Sound[],
   state: GameState
 ): void => {
-  const player: PlayerType = createPlayer()
+  const player: Player = createPlayer()
 
   const initializeGameState = (state: GameState): GameState => {
     player.canFire = true

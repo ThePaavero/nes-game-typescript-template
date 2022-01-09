@@ -1,6 +1,6 @@
 import { Thing } from '../engine/BaseTypes'
 
-export interface PlayerType extends Thing {
+export interface Player extends Thing {
   canFire?: boolean
   firing?: boolean
   points?: number
@@ -11,7 +11,7 @@ export interface Enemy extends Thing {
 }
 
 export interface Projectile extends Thing {
-  player?: PlayerType
+  player?: Player
 }
 
 export interface GameState {

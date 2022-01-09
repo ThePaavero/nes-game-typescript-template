@@ -1,8 +1,8 @@
 import { fire } from './PlayerProjectile'
 import { buttonIsPressed } from '../../engine/utils/ControlsHelper'
-import { GameState, PlayerType } from '../GameTypes'
+import { GameState, Player } from '../GameTypes'
 
-export const createPlayer = (): PlayerType => {
+export const createPlayer = (): Player => {
   return {
     id: 'player',
     width: 23,
@@ -31,7 +31,7 @@ export const createPlayer = (): PlayerType => {
   }
 }
 
-export const applyPlayerActions = (state: GameState, player: PlayerType) => {
+export const applyPlayerActions = (state: GameState, player: Player) => {
   if (buttonIsPressed('b', state.keysDown)) {
     fire(state, player)
   }

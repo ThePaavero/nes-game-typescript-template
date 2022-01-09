@@ -1,10 +1,10 @@
 import { playSound } from '../../engine/utils/SoundHelper'
 import { Thing } from '../../engine/BaseTypes'
 import { getThingById } from './../../engine/utils/ThingHelper'
-import { GameState, PlayerType, Projectile } from '../GameTypes'
+import { GameState, Player, Projectile } from '../GameTypes'
 
 export const createPlayerProjectile = (things: Thing[]): Projectile => {
-  const player = getThingById(things, 'player') as PlayerType
+  const player = getThingById(things, 'player') as Player
   return {
     player,
     id: 'playerProjectile',
@@ -34,7 +34,7 @@ export const createPlayerProjectile = (things: Thing[]): Projectile => {
   }
 }
 
-export const fire = (state: GameState, player: PlayerType) => {
+export const fire = (state: GameState, player: Player) => {
   if (!player || !player.canFire) {
     return
   }
