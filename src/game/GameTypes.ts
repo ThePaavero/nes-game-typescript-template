@@ -6,6 +6,10 @@ export interface PlayerType extends Thing {
   points?: number
 }
 
+export interface Enemy extends Thing {
+  gavePoints?: boolean
+}
+
 export interface Projectile extends Thing {
   player?: PlayerType
 }

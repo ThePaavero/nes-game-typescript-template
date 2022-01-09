@@ -1,6 +1,6 @@
 import { doGenericPhysics } from '../engine/utils/MovementHelper'
 import { Image, Sound, Thing } from '../engine/BaseTypes'
-import { GameState, PlayerType } from './GameTypes'
+import { Enemy, GameState, PlayerType } from './GameTypes'
 import { centerThing, getThingsById, isInTuple, removeThing } from '../engine/utils/ThingHelper'
 import { applyPlayerActions, createPlayer } from './modules/Player'
 import { enemyExplode, shouldSpawnEnemy, spawnEnemy } from './modules/Enemy'
@@ -87,7 +87,7 @@ const Game = (
       }
     } else if (isInTuple(thingPair, 'playerProjectile') && isInTuple(thingPair, 'enemy')) {
       // Player projectile hit an enemy.
-      const enemy = thingPair.find((t) => t.id === 'enemy')
+      const enemy = thingPair.find((t) => t.id === 'enemy') as Enemy
       const projectile = thingPair.find((t) => t.id === 'playerProjectile')
       const enemyClone = { ...enemy }
       removeThing(state, enemy)

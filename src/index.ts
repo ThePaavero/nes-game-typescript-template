@@ -11,6 +11,7 @@ import { setUpDebugger } from './engine/utils/StateDebugger'
 import './scss/main.scss'
 import { setImages } from './engine/utils/ImageHelper'
 import { GameState } from './game/GameTypes'
+import { gameState } from './game/GameState'
 
 const renderLoadingScreen = (context: CanvasRenderingContext2D, gameName: string): void => {
   write(context, `Loading ' ${gameName} ' . . .`, 10, 10, 10)
@@ -40,8 +41,7 @@ const init = async () => {
     things,
     paused: false,
     keysDown: [],
-    projectiles: [],
-    loopingBackgroundPosition: 0,
+    ...gameState,
   }
 
   setImages(images)

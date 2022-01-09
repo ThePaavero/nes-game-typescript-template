@@ -84,7 +84,6 @@ export interface Thing {
   traits?: Traits
   momentum?: Momentum
   mass?: number
-  gavePoints?: boolean
   image?: boolean
   color?: string
 }
